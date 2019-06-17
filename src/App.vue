@@ -18,11 +18,4 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
- * {
-   margin:0;
-   padding:0;
-   list-style:none;
-   box-sizing:border-box; 
-   font-family:"微软雅黑";
- }
 </style>
