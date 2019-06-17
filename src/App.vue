@@ -18,4 +18,8 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+img{
+  width:100%;
+  height:100%;
+}
 </style>

@@ -22,6 +22,6 @@ module.exports = {
           preset: "advanced",
           autoprefixer: false,
           "postcss-zindex": false
-  }
  }
+  }
 }
