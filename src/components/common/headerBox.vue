@@ -101,6 +101,7 @@ export default {
     }
     .navContent{
         width:900px;
+        height:100%;
         margin:0 auto;
         display:flex;
         justify-content:space-between;

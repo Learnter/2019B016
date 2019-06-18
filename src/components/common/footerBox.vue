@@ -8,18 +8,10 @@
                     </div>
                    <div class="footer-tips">
                        <p>
-                           <!-- <span class="span_1">首页</span>
-                           <span class="span_1">商铺转让</span>
-                           <span class="span_1">我要找店</span>
-                           <span class="span_1">找店地址</span>
-                           <span class="span_1">APP下载</span>
-                           <span>关于我们</span>
-                           <span>开店百科</span>
-                           <span>站内新闻</span> -->
                            首页 | 商铺转让 | 我要找店 | 找店地址 | APP下载 | 关于我们 | 开店百科 | 站内新闻
                        </p>
                        <p>
-                           联系电话 : <span style="color:#2A9DFF">0769-459215</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公司地址 : 广东省东莞市虎门镇北栅社区东坊路东方大厦1301
+                           联系电话 : <span class="word_blue">0769-459215</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公司地址 : 广东省东莞市虎门镇北栅社区东坊路东方大厦1301
                        </p>
                    </div>             
              </div>

@@ -99,7 +99,7 @@
                                 <span>24小时内</span>
                             </div>
                             <div  class="store-right-li">
-                                <p>行业 : 奶茶  电话 : <span style="color:#2A9DFF">132156878945</span></p>
+                                <p>行业 : 奶茶  电话 : <span class="word_blue">132156878945</span></p>
                                 <span>45平方米</span>
                             </div>
                             <div  class="store-right-li">
@@ -139,18 +139,12 @@
  }
 </script>
 <style scoped>
-
     .text_size_1{
         font-size:14px;
         font-weight:bold;
         color:#666666;
     }
 
-    .text_size_2{
-        font-size:17px;
-        font-weight:400;
-        color:#333333;
-    }
     .main{
         width:900px;
         margin:20px auto;
@@ -302,7 +296,9 @@
     }
 
     .store-left{
-        padding: 5px 10px 5px 5px;
+        width:141px;
+        height:123px;
+        margin:5px 10px 5px 5px;
     }
 
     .store-right{
