@@ -10,32 +10,32 @@
                      <li class="search_item">
                          <div class="search_left">区&nbsp;&nbsp;&nbsp;&nbsp;域&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
                          <div class="search_right text_size_14">
-                              <p v-for="(item,index) in 20" :key="index" style="margin-right:10px;padding-bottom:8px">虎门镇</p>
+                              <p class="search_right_word text_size_14" v-for="(item,index) in 20" :key="index" >虎门镇</p>
                          </div>
                      </li>
                      <hr/>
-                     <li>
+                     <li class="search_item">
                          <div class="search_left">业&nbsp;&nbsp;&nbsp;&nbsp;态&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
                          <div>
                               
                          </div>
                      </li>
                      <hr/>
-                     <li>
+                     <li class="search_item">
                          <div class="search_left">面&nbsp;&nbsp;&nbsp;&nbsp;积&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
                          <div>
                               
                          </div>
                      </li>
                      <hr/>
-                     <li>
+                     <li class="search_item">
                          <div class="search_left">月租金&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
                          <div>
                               
                          </div>
                      </li>
                      <hr/>
-                     <li>
+                     <li class="search_item">
                          <div class="search_left">类&nbsp;&nbsp;&nbsp;&nbsp;型&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
                          <div>
                               
@@ -106,17 +106,18 @@ export default {
 
 
     .suMain{
-        width:900px;
+        width:1200px;
         margin:0 auto;
         text-align:left;
     }
 
     .search_item{
         display:flex;
+        padding:10px 0;
     }
 
     .search_left{
-        font-size:15px;
+        font-size:20px;
         font-weight:bold;
         margin-right:15px;
         flex-shrink:0;
@@ -125,6 +126,12 @@ export default {
     .search_right{
         display:flex;
         flex-wrap: wrap;
+    }
+
+    .search_right_word{
+        margin-right:15px;
+        padding-bottom:12px;
+        cursor:pointer;
     }
 
     .storeList{
@@ -136,7 +143,7 @@ export default {
         display:flex;
         border:2px solid rgba(239,239,239,1);
         padding:5px 15px 10px 2px;
-        margin-bottom:10px;
+        margin-bottom:12px;
     }
 
     .hot-Push{

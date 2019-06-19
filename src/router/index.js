@@ -4,6 +4,7 @@ import Home from "@/components/Home/home";
 import AboutUs from "@/components/aboutUs/aboutUs";
 import Encyclopedia from "@/components/store/encyclopedia";
 import Success from "@/components/success/success";
+import Details from "@/components/details/details";
 
 Vue.use(Router)
 
@@ -25,9 +26,14 @@ export default new Router({
       component: Encyclopedia
     },
     {
-      path: '/',
+      path: '/success',
       name: 'Success',
       component: Success
-    }   
+    },
+    {
+      path:"/",
+      name:"Details",
+      component:Details
+    }
   ]
 })

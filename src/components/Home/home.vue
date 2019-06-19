@@ -9,15 +9,15 @@
             <div class="logBox">
                 <div class="logItem">
                     <img class="logImg" src="../../assets/zpzpwz_4.png"/>
-                    <p class="text_size_2">开店百科</p>
+                    <p class="text_size_17">开店百科</p>
                 </div>
                 <div class="logItem">
                     <img class="logImg" src="../../assets/zpzpwz_5.png"/>
-                    <p class="text_size_2">关于我们</p>
+                    <p class="text_size_17">关于我们</p>
                 </div>
                 <div class="logItem">
                     <img class="logImg" src="../../assets/zpzpwz_6.png"/>
-                    <p class="text_size_2">成功案例</p>
+                    <p class="text_size_17">成功案例</p>
                 </div>
             </div>
             <div class="caseList">
@@ -30,17 +30,19 @@
                             <img src="../../assets/zpzpwz_8.png" alt="加载失败">
                           </div>
                           <div class="connect-service-info">
-                              <div class="store-right-li">
+                              <div class="store-right-li text_size_14">
                                   <span>客服</span>
                                   <span>已有2561人咨询</span>
                               </div>
-                              <div class="store-right-li margin-top">
-                                  <span class="text_size_2">张小姐</span>
+                              <div class="store-right-li margin-top text_size_17">
+                                  <span>张小姐</span>
                                   <span style="color:#2A9DFF">12546789456</span>
                               </div>
                           </div>
-                          <div class="connect-btn">
-                              <i></i>
+                          <div class="connect-btn text_size_14 flex_row">
+                              <div class="connect_btn_icon ">
+                                  <img src="../../assets/zpzp_2.png" alt="加载失败">
+                              </div>
                               <span>在线咨询</span>
                           </div>  
                     </div>
@@ -56,28 +58,28 @@
                             <img src="../../assets/zpzpwz_12.png" alt="加载失败">
                         </div>
                         <h3>联系预约</h3>
-                        <p class="text_size_1">预约店铺信息实地考察</p>
+                        <p class="text_size_14">预约店铺信息实地考察</p>
                     </div>
                     <div class="case-process-li">
                         <div class="case-process-img">
                             <img src="../../assets/zpzpwz_13.png" alt="加载失败">
                         </div>
                         <h3>开通转店资质</h3>
-                        <p class="text_size_1">店家考察后确认合作签订法律合同</p>
+                        <p class="text_size_14">店家考察后确认合作签订法律合同</p>
                     </div>
                     <div class="case-process-li">
                         <div class="case-process-img">
                             <img src="../../assets/zpzpwz_14.png" alt="加载失败">
                         </div>
                         <h3>客服服务</h3>
-                        <p class="text_size_1">凭条广告推送 专业转店客服服务跟踪店铺转让过程</p>
+                        <p class="text_size_14">凭条广告推送 专业转店客服服务跟踪店铺转让过程</p>
                     </div>
                     <div class="case-process-li">
                        <div class="case-process-img">
                             <img src="../../assets/zpzpwz_15.png" alt="加载失败">
                         </div>
                         <h3>人工售后服务</h3>
-                        <p class="text_size_1">服务到转铺成功为止</p>
+                        <p class="text_size_14">服务到转铺成功为止</p>
                     </div>
                 </div>
             </div>
@@ -95,7 +97,7 @@
                         </div>
                         <div class="store-right">
                             <div class="store-right-li">
-                                <span class="text_size_2">转租大朗长富步行街的店铺</span>
+                                <span class="text_size_17">转租大朗长富步行街的店铺</span>
                                 <span>24小时内</span>
                             </div>
                             <div  class="store-right-li">
@@ -139,14 +141,9 @@
  }
 </script>
 <style scoped>
-    .text_size_1{
-        font-size:14px;
-        font-weight:bold;
-        color:#666666;
-    }
 
     .main{
-        width:900px;
+        width:1200px;
         margin:20px auto;
     }
 
@@ -157,8 +154,8 @@
     }
 
     .logItem{
-        width:290px;
-        height:341px;
+        width:387px;
+        height:455px;
         border:2px solid rgba(239, 239, 239, 1);
         display: flex;
         flex-direction:column;
@@ -168,8 +165,8 @@
     }
 
     .logImg{
-        width:90px;
-        height:90px;
+        width:108px;
+        height:108px;
         opacity:0.8;
         margin-bottom:50px;
     }
@@ -181,11 +178,11 @@
     }
 
     .caseTips{
-        width:133px;
-        height:52px;
-        line-height:52px;
+        width:177px;
+        height:69px;
+        line-height:69px;
         margin: 45px 0;
-        font-size:23px;
+        font-size:30px;
         font-weight:bold;
         background:url("../../assets/zpzpwz_7.png");
         background-size:100%;
@@ -205,21 +202,22 @@
 
     .connect-item{
         box-sizing:border-box;
-        width:214px;
-        height:280px;
+        width:285px;
+        height:373px;
         border:2px solid rgba(239,239,239,1);
         padding:30px 17px;
         display:flex;
         flex-direction:column;
         align-items:center;
         justify-content:space-between;
+        cursor: pointer;
 
 
     }
 
     .connect-item-img{
-        width:107px;
-        height:107px;
+        width:143px;
+        height:137px;
         border-radius:50%;
     }
 
@@ -235,38 +233,67 @@
     }
 
     .connect-btn{
-        width:125px;
-        height:30px;
-        line-height:30px;
-        font-size:14px;
         color:white;
         background:#EA3323;
-        border-radius:15px;
+        width:166px;
+        height:40px;
+        border-radius:20px;
+        align-items:center;
+        justify-content:center;
+        cursor: pointer;
+    }
+
+    .connect_btn_icon{
+        width:23px;
+        height:21px;
+        margin-right:10px;
     }
 
 
     .case-process{
         width:100%;
-        height:254px;
+        height:338px;
         border:2px solid rgba(239,239,239,1);
         display:flex;
     }
 
     .case-process-li{
         width:25%;
-        padding-top:45px;
+        padding-top:55px;
     }
 
     .case-process-img{
-        width:59px;
-        height:59px;
+        width:80px;
+        height:80px;
         margin:0 auto;
     }
 
     h3{
         margin:20px 0;
-        font-size:20px;
+        font-size:26px;
         font-weight:bold;
+    }
+
+
+   
+.caseList{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .caseTips{
+        width:133px;
+        height:52px;
+        line-height:52px;
+        text-align:center;
+        margin: 45px 0;
+        font-size:23px;
+        font-weight:bold;
+        background:url("../../assets/zpzpwz_7.png");
+        background-size:100%;
+        background-position:50%;
+        background-repeat:no-repeat;
     }
 
     .storeList{
@@ -276,8 +303,8 @@
     .storeItem{
         position:relative;
         display:flex;
-        height:146px;
         border:2px solid rgba(239,239,239,1);
+        padding:5px 15px 10px 2px;
         margin-bottom:10px;
     }
 
@@ -285,11 +312,8 @@
         position: absolute;
         left:0;
         top:0;
-        width:66px;
-        height:27px;
-        line-height:27px;
-        font-size:17px;
-        font-weight:400;
+        padding:5px 12px;
+        text-align:center;
         background:red;
         color:white;
         border-radius: 0 0 12px 0;
@@ -298,13 +322,12 @@
     .store-left{
         width:141px;
         height:123px;
-        margin:5px 10px 5px 5px;
     }
 
     .store-right{
-        width:100%;
+        flex:1;
         text-align:left;
-        padding:10px 20px 10px 0;
+        padding:10px;
         color:#999999;
         font-size:14px;
         display:flex;

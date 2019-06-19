@@ -23,7 +23,7 @@
                         <div class="store_right">
                             <p class="text_size_17">新媒体带来的一些餐饮营销变数</p>
                             <p class="text_size_12">2019-05-30 &nbsp;&nbsp;&nbsp;&nbsp;浏览次数 : 324</p>
-                            <p class="text_size_14">1111111111111111111122222222222222222222222222222211111111111111111111111111111111111111111111111111111111111111111111111111111</p>
+                            <p class="text_size_1">1111111111111111111122222222222222222222222222222211111111111111111111111111111111111111111111111111111111111111111111111111111</p>
                             <div>
                                 <span class="store_tips">新媒体带来的营销变数</span>
                                 <span class="store_tips">新媒体带来的营销变数</span>
@@ -88,14 +88,16 @@ p{
 }
 
 .encyMain{
-    width:900px;
+    width:1200px;
     margin:0 auto;
     text-align:left;
 }
 
 .encyNav_lists{
     display:flex;
+    align-items:center;
     background:#F2F2F2;
+    height:58px;
 }
 
 .nav_style{
@@ -105,7 +107,7 @@ p{
 }
 
 .store_item{
-    margin-top:10px;
+    margin-top:12px;
     padding:10px;
     border:1px solid rgba(0, 0, 0, 0.1);
     display:flex;
@@ -113,24 +115,24 @@ p{
 
 .store_picture{
     flex-shrink:0;
-    width:199px;
-    height:100px;
-    margin-right:10px;
+    width:266px;
+    height:147px;
+    margin-right:15px;
 }
 
 .store_right{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: hidden;
+    padding: 5px 0;
+
 }
 
 .store_tips{
     padding:2px 15px;
     background:#EA3323;
-    font-size:12px;
     color:white;
-    margin-right:5px;
+    margin-right:10px;
 }
 
 </style>

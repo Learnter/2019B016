@@ -15,8 +15,8 @@
                 <div class="navContent-left">
                     <img src="../../assets/zpzpwz_3.png" alt="加载失败">
                 </div>
-                <div class="navContent-right">
-                    <ul>
+                <div>
+                    <ul class=" navContent-right flex_row">
                         <li  v-for="(item,index) in navInfo" :key="index" @click = "toggleId = index">
                             <span class="tabBtn" :class="toggleId == index ? 'selected': ''">{{item.name}}</span>
                         </li>
@@ -75,8 +75,8 @@ export default {
 </script>
 <style scoped>
     .topBar{
-        width:900px;
-        font-size:15px;
+        width:1200px;
+        font-size:20px;
         margin:10px auto;
         display:flex;
         align-items:center;
@@ -96,11 +96,11 @@ export default {
     }
     .navBar{
       background:#EA3323;
-      height:56px;
-      line-height:56px;
+      height:74px;
+      line-height:74px;
     }
     .navContent{
-        width:900px;
+        width:1200px;
         height:100%;
         margin:0 auto;
         display:flex;
@@ -110,18 +110,17 @@ export default {
     }
 
     .navContent-left{
-        width:78px;
-        height:36px;
+        width:104px;
+        height:48px;
     }
 
-    .navContent-right ul {
-        display:flex;
+    .navContent-right{
         justify-content:center;
         align-items:center;
     }
     .tabBtn{
-        padding: 5px 10px;
-        font-size:15px;
+        padding:10px;
+        font-size:20px;
         cursor: pointer;
     }
     .selected{
@@ -129,7 +128,7 @@ export default {
     }
     .mod-banner-scroll{
         width:100%;
-        height:362px;
+        height:482px;
     }
 
     

@@ -8,7 +8,7 @@
                企业愿景 : 服务中国千万实体的领先互联网平台
            </div>
            <div class="company-Info">
-               <ul>
+               <ul class="flex_col ">
                    <li class="company-Info-item">
                        <div class="company-picture">
                            <img src="../../assets/zpzpwz_23.png" alt="加载失败">
@@ -86,7 +86,7 @@ export default {
 </script>
 <style scoped>
 .usMain{
-    width:900px;
+    width:1200px;
     margin:0 auto;
     text-align:left;
 }
@@ -95,35 +95,37 @@ export default {
     background:#EA3323;
     color:white;
     text-align:center;
-    padding:8px 0;
-    border-radius:15px;
+    padding:10px 0;
+    border-radius:20px;
+    font-size:26px;
+    margin: 20px 0 ;
 }
 
 .company-Info-item{
-    margin:35px 0 20px;
+    margin:35px 0;
     display: flex;
 }
 
 .company-picture{
     flex-shrink: 0;
-    width:352px;
-    height:203px;
+    width:470px;
+    height:270px;
     margin-right:30px;
 }
 
 .introduce-title{
     text-align:center;
-    font-size:26px;
+    font-size:34px;
     font-weight:400;
     margin-bottom:15px;
 }
 
 .introduce-content{
-    font-size:15px;
+    font-size:20px;
     font-size:400;
     color:#666666;
-    line-height:23px;
-    text-indent:30px;
+    line-height:30px;
+    text-indent:40px;
 }
 
 .company-Info-item:nth-child(even){
@@ -138,14 +140,14 @@ export default {
 .company-style{
     display:flex;
     align-items:center;
-    font-size:26px;
+    font-size:34px;
     font-weight:400;
     margin:30px 0;
 }
 
 .style-border{
-    width:4px;
-    height:35px;
+    width:10px;
+    height:54px;
     background:#EA3323;
     border-radius:4px;
     margin-right:15px;
@@ -154,11 +156,12 @@ export default {
 .company-teams{
     display:flex;
     justify-content:space-between;
+    margin:35px 0;
 }
 
 .team-picture{
-    width:295px;
-    height:170px;
+    width:394px;
+    height:227px;
 }
 
 /* .company-stores{

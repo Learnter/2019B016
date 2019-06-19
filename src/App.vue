@@ -12,7 +12,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family:MicrosoftYaHei;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -25,34 +25,78 @@ img{
   height:100%;
 }
 
-/*文字样式*/
+/*flex 布局样式 */
+
+.flex_row{   
+  display:flex;
+  flex-direction:row;
+}
+
+.flex_col{
+  display:flex;
+  flex-direction: column;
+}
+
+.flex_between_center{
+  justify-content:space-between;
+  align-items:center;
+}
+
+.flex_1{
+  flex:1;
+}
+
+.flex_shrink{
+  flex-shrink:0;
+}
+
+/*文字样式大小*/
+.text_size_32{
+  font-size:32px;
+  font-weight:bold;
+  color:#343434;
+}
+.text_size_18{
+  font-size:18px;
+  font-weight:bold;
+  color:#252A33;
+  line-height:24px;
+}
+
 .text_size_17{
-    font-size:17px;
+    font-size:22px;
     color: #343434;
     font-weight:400;
 }
 
+.text_size_16{
+  font-size:16px;
+ font-weight:bold;
+  color:#252A33;
+  line-height:24px;
+}
+
 .text_size_14{
-  font-size:14px;
+  font-size:18px;
   color:#525252;
-  line-height:15px;
+  line-height:24px;
   font-weight:400;
 }
 
 .text_size_12{
-    font-size:12px;
+    font-size:16px;
     color:#979797;
     font-weight:400;
 }
 
 .text_size_15{
-    font-size:15px;
+    font-size:20px;
     color: #666666;
     font-weight:400;
 }
 
 
-/* 文字颜色 */
+/* 文字颜色样式*/
 .word_red{
   color:#EA3323;
 }
@@ -63,22 +107,22 @@ img{
 
 
 .position-tips{
-  margin:15px 0;
+  margin:20px 0;
   color:#343434;
 }
 
 .company-stores{
-    margin:20px 0;
+    margin:30px 0;
     display:flex;
     justify-content:space-between;
 }
 
 .stores-btn{
-    width:295px;
-    height:65px;
-    line-height:65px;
+    width:387px;
+    height:87px;
+    line-height:87px;
     background:#CDCDCD;
-    font-size:21px;
+    font-size:28px;
     font-weight:400;
     text-align:center;
 }

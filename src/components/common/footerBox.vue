@@ -32,25 +32,21 @@ export default {
     p{
         text-align:left;
     }
-    img{
-        width:100%;
-        height:100%;
-    }
     .footerBox{
         width:100%;
-        height:194px;
+        height:259px;
         background:#EA3323;
         display:flex;
         align-items:center;
     }
     .footerContent{
-        width:900px;
+        width:1200px;
         color:white;
         margin:0 auto;
         display:flex;
         justify-content:space-between;
         align-items:center;
-        font-size:14px;
+        font-size:18px;
         font-weight:400;
     }
     .footer-left{
@@ -60,8 +56,8 @@ export default {
         justify-content:space-between;
     }
     .footer-right{
-        width:118px;
-        height:118px;
+        width:158px;
+        height:158px;
         overflow:hidden;
     }
     .footer-left-top{
@@ -69,8 +65,8 @@ export default {
        margin-bottom:20px;
     }
     .footer-left-logo{
-        width:118px;
-        height:53px;
+        width:157px;
+        height:71px;
     }
     .footer-tips{
         margin-left:30px;
