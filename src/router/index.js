@@ -10,30 +10,34 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path:"/",
+      redirect:"/home"
+    },
      {
       path: '/home',
       name: 'Home',
-      component: Home
+      component: resolve => require(["@/components/Home/home"],resolve)
     },
     {
       path: '/aboutUs',
       name: 'AboutUs',
-      component: AboutUs
+      component: resolve => require(["@/components/aboutUs/aboutUs"],resolve)
     },
     {
       path: '/encyclopedia',
       name: 'Encyclopedia',
-      component: Encyclopedia
+      component: resolve => require(["@/components/store/encyclopedia"],resolve)
     },
     {
       path: '/success',
       name: 'Success',
-      component: Success
+      component: resolve => require(["@/components/success/success"],resolve)
     },
     {
-      path:"/",
+      path:"/details",
       name:"Details",
-      component:Details
+      component: resolve => require(["@/components/details/details"],resolve)
     }
   ]
 })

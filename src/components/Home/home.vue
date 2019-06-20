@@ -1,23 +1,19 @@
 <template>
     <div id="homePage">
-
-        <!--头部栏-->
-        <header-box></header-box>
-
         <!-- 中间主内容 -->
         <div class="main">
             <div class="logBox">
-                <div class="logItem">
+                <div class="logItem text_size_17">
                     <img class="logImg" src="../../assets/zpzpwz_4.png"/>
-                    <p class="text_size_17">开店百科</p>
+                    <p>开店百科</p>
                 </div>
-                <div class="logItem">
+                <div class="logItem text_size_17">
                     <img class="logImg" src="../../assets/zpzpwz_5.png"/>
-                    <p class="text_size_17">关于我们</p>
+                    <p>关于我们</p>
                 </div>
-                <div class="logItem">
+                <div class="logItem text_size_17">
                     <img class="logImg" src="../../assets/zpzpwz_6.png"/>
-                    <p class="text_size_17">成功案例</p>
+                    <p>成功案例</p>
                 </div>
             </div>
             <div class="caseList">
@@ -119,13 +115,11 @@
         </div>
 
         <!-- 底部栏 -->
-        <footer-box></footer-box>
+        <!-- <footer-box></footer-box> -->
         
     </div>
 </template>
-<script>
-    import footerBox from "@/components/common/footerBox";
-    import headerBox from "@/components/common/headerBox";    
+<script>  
  export default {
      data(){
         return{
@@ -133,10 +127,6 @@
      },
      created(){
 
-     },
-     components:{
-         footerBox,
-         headerBox
      }
  }
 </script>
@@ -144,7 +134,7 @@
 
     .main{
         width:1200px;
-        margin:20px auto;
+        margin:30px auto;
     }
 
     .logBox{
@@ -162,6 +152,16 @@
         justify-content:center;
         align-items:center;
         cursor: pointer;
+        transition: transform 0.2s linear;
+        overflow: hidden;
+    }
+
+    .logItem:hover{
+        transform:scale(0.9) ;
+        background:linear-gradient(30deg,lightcyan,white,lightcyan);
+        font-size:26px;
+        font-weight:bold;
+        
     }
 
     .logImg{
@@ -217,8 +217,16 @@
 
     .connect-item-img{
         width:143px;
-        height:137px;
+        height:143px;
         border-radius:50%;
+        transition: box-shadow 0.2s linear;
+    }
+
+    .connect-item-img:hover{
+        transform:rotate(-30deg) scale(1.2);
+        box-shadow: 0 0 20px 5px lightcyan;
+        z-index:10;
+
     }
 
 
@@ -241,6 +249,12 @@
         align-items:center;
         justify-content:center;
         cursor: pointer;
+    }
+
+    .connect-btn:hover{
+        font-size:22px;
+        color:black;
+
     }
 
     .connect_btn_icon{
@@ -305,7 +319,13 @@
         display:flex;
         border:2px solid rgba(239,239,239,1);
         padding:5px 15px 10px 2px;
-        margin-bottom:10px;
+        margin-bottom:20px;
+    }
+
+    .storeItem:hover{
+        background:linear-gradient(30deg,white,lightcyan,lightcyan);
+        cursor: pointer;
+        transform: scaleY(1.1);
     }
 
     .hot-Push{

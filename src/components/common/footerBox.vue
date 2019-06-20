@@ -18,7 +18,7 @@
              <p>copyright&copy;东莞市铺经理网络科技有限公司  备案号 : 粤ICP备17066789号-1站长统计</p>
            </div>
            <div class="footer-right">
-               <img src="../../assets/zpzpwz_17.png" alt="">
+               <img src="../../assets/zpzpwz_17.png" alt="二维码图片">
            </div>
         </div>
     </section>
@@ -34,13 +34,13 @@ export default {
     }
     .footerBox{
         width:100%;
+        min-width:1200px;
         height:259px;
         background:#EA3323;
-        display:flex;
-        align-items:center;
     }
     .footerContent{
         width:1200px;
+        height:100%;
         color:white;
         margin:0 auto;
         display:flex;
@@ -60,6 +60,12 @@ export default {
         height:158px;
         overflow:hidden;
     }
+
+    .footer-right:hover{
+        transform:scale(1.2);
+        box-shadow: 0 0 10px 1px white;
+    }
+
     .footer-left-top{
        display:flex;
        margin-bottom:20px;

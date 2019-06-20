@@ -1,15 +1,14 @@
 <template>
     <!-- 开店百科 -->
     <section class="encyclopedia">
-        <header-box></header-box>
 
         <div class="encyMain">
             <p class="position-tips text_size_17">当前位置 : 首页 &gt; 开店百科</p>
 
             <div class="encyNav">
                 <ul class="encyNav_lists">
-                    <li v-for="(item,index) in navList" :key="index" @click="toggleNav(index)">
-                        <span class="nav_style text_size_15" :class="selected == index ? 'selected' : ''">{{item.title}}</span>
+                    <li class="nav_style text_size_15" v-for="(item,index) in navList" :key="index" @click="toggleNav(index)">
+                        <span  :class="selected == index ? 'selected' : ''">{{item.title}}</span>
                     </li>
                 </ul>
             </div>
@@ -40,12 +39,10 @@
                <div class="stores-btn">联系人工客服</div>
            </div>
         </div>
-        <footer-box></footer-box>
     </section>
 </template>
 <script>
-import headerBox from "@/components/common/headerBox";
-import footerBox from "@/components/common/footerBox";
+
 export default {
     name:"encyclopedia",
     data(){
@@ -68,8 +65,8 @@ export default {
         }
     },
     components:{
-        headerBox,
-        footerBox
+        // headerBox,
+        // footerBox
     }
 }
 </script>
@@ -106,11 +103,22 @@ p{
     cursor: pointer;
 }
 
+.nav_style:hover{
+    font-weight:bold;
+    color:#525252;
+}
+
 .store_item{
-    margin-top:12px;
+    margin-top:20px;
     padding:10px;
-    border:1px solid rgba(0, 0, 0, 0.1);
+    border:1px solid #EFEFEF;
     display:flex;
+}
+
+.store_item:hover{
+    background:linear-gradient(30deg,white,lightcyan,lightcyan);
+    cursor: pointer;
+    transform: scaleY(1.1);
 }
 
 .store_picture{

@@ -1,6 +1,5 @@
 <template>
     <section class="aboutUs">
-        <header-box></header-box>
 
         <div class="usMain">
            <p class="position-tips text_size_17">当前位置 : 首页 > 关于我们</p>
@@ -65,22 +64,16 @@
            </div>
         </div>
 
-        <footer-box></footer-box>
     </section>
 </template>
 <script>
-import headerBox from "@/components/common/headerBox";
-import footerBox from "@/components/common/footerBox";
+
 export default {
     name:"aboutUs",
     data(){
         return{
 
         }
-    },
-    components:{
-        headerBox,
-        footerBox
     }
 }
 </script>
@@ -164,20 +157,13 @@ export default {
     height:227px;
 }
 
-/* .company-stores{
-    margin:20px 0;
-    display:flex;
-    justify-content:space-between;
+.team-picture:hover,.company-picture:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px 5px lightcyan;
+    border-radius:20px;
+    z-index:10;
+    overflow: hidden;
 }
-
-.stores-btn{
-    width:295px;
-    height:65px;
-    line-height:65px;
-    background:#CDCDCD;
-    font-size:21px;
-    font-weight:400;
-    text-align:center;
-} */
 
 </style>

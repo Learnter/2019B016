@@ -1,8 +1,6 @@
 <template>
     <section class="storeDetails">
 
-        <header-box></header-box>
-
         <div class="deMain">
 
            <p class="position-tips text_size_17">当前位置 : 首页 > 精选店铺</p>
@@ -201,22 +199,16 @@
             </div>
         </div>
 
-        <footer-box></footer-box>
     </section>
 </template>
 <script>
-import headerBox from "@/components/common/headerBox";
-import footerBox from "@/components/common/footerBox";
+
 export default {
     name:"storeDetails",
     data(){
         return{
 
         }
-    },
-    components:{
-        headerBox,
-        footerBox
     }
 }
 </script>
@@ -256,6 +248,8 @@ export default {
 
 .storeInfo{
     box-sizing:border-box;
+    width:100%;
+    height:613px;
     border:1px solid #EEEFF2;
     padding:20px 20px 60px;
     overflow: hidden;
@@ -273,7 +267,7 @@ export default {
 
 .store_picture_big{
     width:612px;
-    height:380px;
+    height:382px;
     cursor: pointer;
 }
 
@@ -283,7 +277,7 @@ export default {
 
 .store_picture_small{
     width:200px;
-    height:130px;
+    height:132px;
     cursor: pointer;
 }
 

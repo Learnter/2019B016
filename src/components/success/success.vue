@@ -1,6 +1,5 @@
 <template>
     <section class="aboutUs">
-        <header-box></header-box>
 
         <div class="suMain">
             <p class="position-tips text_size_17">当前位置 : 首页 > 成功案例</p>
@@ -81,24 +80,15 @@
                <div class="stores-btn">联系人工客服</div>
            </div>
         </div> 
-
-
-        <footer-box></footer-box>
     </section>
 </template>
 <script>
-import headerBox from "@/components/common/headerBox";
-import footerBox from "@/components/common/footerBox";
 export default {
     name:"aboutUs",
     data(){
         return{
 
         }
-    },
-    components:{
-        headerBox,
-        footerBox
     }
 }
 </script>
@@ -143,7 +133,13 @@ export default {
         display:flex;
         border:2px solid rgba(239,239,239,1);
         padding:5px 15px 10px 2px;
-        margin-bottom:12px;
+        margin-bottom:20px;
+    }
+
+    .storeItem:hover{
+        background:linear-gradient(30deg,white,lightcyan,lightcyan);
+        cursor: pointer;
+        transform: scaleY(1.1);
     }
 
     .hot-Push{
@@ -177,4 +173,6 @@ export default {
         display:flex;
         justify-content:space-between;
     }
+
+
 </style>
