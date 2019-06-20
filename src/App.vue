@@ -117,7 +117,7 @@ img{
 
 
 .position-tips{
-  margin:20px 0;
+  margin:30px 0;
   color:#343434;
 }
 
@@ -129,8 +129,8 @@ img{
 
 .stores-btn{
     width:387px;
-    height:87px;
-    line-height:87px;
+    height:67px;
+    line-height:67px;
     background:#CDCDCD;
     font-size:28px;
     font-weight:400;

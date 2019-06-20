@@ -17,8 +17,8 @@
                 </div>
                 <div>
                     <ul class=" navContent-right flex_row">
-                        <li class="navContent_right_li" v-for="(item,index) in navInfo" :key="index" @click = "toggleNav(item)">
-                            <div class="tabBtn" :class="active == item.name ? 'selected' : ' '">{{item.name}}</div>
+                        <li class="navContent_right_li" :class="active == item.name ? 'selected' : ' '"  v-for="(item,index) in navInfo" :key="index" @click = "toggleNav(item)">
+                            <span class="tabBtn">{{item.name}}</span>
                         </li>
                     </ul>
                 </div>
@@ -107,10 +107,11 @@ export default {
 <style scoped>
 
     .selected{
-      font-size:22px;
-      font-weight:400;
+      font-size:20px;
+      font-weight:700;
       color:lightgoldenrodyellow;
-       border-bottom:3px solid black;
+      padding-bottom:8px;
+      border-bottom:3px solid white;
     }
 
     .topBar{
@@ -166,19 +167,24 @@ export default {
     }
 
     .navContent-right{
-        justify-content:center;
         align-items:center;
-        font-size:20px; 
+        font-size:18px; 
     }
 
     .navContent_right_li{
-        padding:0 10px;
+        height: 40px;
+        line-height:40px;
+        padding:0 5px;
+        margin: 0 10px;
         cursor: pointer;
+        transition:all .3s linear;
     }
 
     .navContent_right_li:hover{
-       font-weight:bold;
-       color:#525252;
+       transform:scale(0.9);
+       color:lightcyan;
+       opacity:0.8;
+       z-index:10;
     }
     .mod-banner-scroll{
         width:100%;

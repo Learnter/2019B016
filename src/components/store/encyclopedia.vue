@@ -7,7 +7,7 @@
 
             <div class="encyNav">
                 <ul class="encyNav_lists">
-                    <li class="nav_style text_size_15" v-for="(item,index) in navList" :key="index" @click="toggleNav(index)">
+                    <li class="nav_style text_size_14" v-for="(item,index) in navList" :key="index" @click="toggleNav(index)">
                         <span  :class="selected == index ? 'selected' : ''">{{item.title}}</span>
                     </li>
                 </ul>
@@ -81,6 +81,8 @@ p{
 .selected{
     color:#EA3323;
     font-weight:bold;
+    font-size:20px;
+    padding-bottom:5px;    
     border-bottom:3px solid #EA3323;
 }
 
@@ -94,7 +96,7 @@ p{
     display:flex;
     align-items:center;
     background:#F2F2F2;
-    height:58px;
+    height:68px;
 }
 
 .nav_style{
