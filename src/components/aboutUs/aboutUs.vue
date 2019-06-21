@@ -1,6 +1,6 @@
 <template>
     <section class="aboutUs">
-
+        <header-box></header-box>
         <div class="usMain">
            <p class="position-tips text_size_17">当前位置 : 首页 > 关于我们</p>
            <div class="company-vision">
@@ -13,7 +13,7 @@
                            <img src="../../assets/zpzpwz_23.png" alt="加载失败">
                        </div>
                        <div class="company-introduce">
-                           <p class="introduce-title">公司<span  style="color:#2A9DFF">简介</span></p>
+                           <p class="introduce-title">公司<span class="word_blue">简介</span></p>
                            <p class="introduce-content">
                                 广东铺经理网络科技有限公司通过互联网十大数据+AI智能匹配系统+专业团队一对一跟踪
                                 服务和成熟的信息资源整合能力,广东铺经理通过物联网大数据将全国商铺信息整合到铺经理大数据平台,
@@ -30,7 +30,7 @@
                            <img src="../../assets/zpzpwz_23.png" alt="加载失败">
                        </div>
                        <div class="company-introduce">
-                           <p class="introduce-title">公司<span  style="color:#2A9DFF">文化</span></p>
+                           <p class="introduce-title">公司<span class="word_blue">文化</span></p>
                            <p class="introduce-content">
                                 铺经理智能服务平台是公司自创立以来就秉承 “科技创新、服务社会” 的理念， 持续投入重金
                                 研发 “高效、快捷转铺找铺智能匹配系统” 。让广大实体商户和前期创业者能够快速的找到自己理想的商铺铺位
@@ -63,18 +63,23 @@
                <div class="stores-btn">联系人工客服</div>
            </div>
         </div>
-
+      <footer-box></footer-box>
     </section>
 </template>
 <script>
-
+import headerBox from "@/components/common/headerBox";
+import footerBox from "@/components/common/footerBox";
 export default {
     name:"aboutUs",
     data(){
         return{
 
         }
-    }
+    },
+components:{
+    headerBox,
+    footerBox
+  }
 }
 </script>
 <style scoped>
@@ -159,7 +164,7 @@ export default {
 
 .team-picture:hover,.company-picture:hover{
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scaleY(1.1);
     box-shadow: 0 0 20px 5px lightcyan;
     border-radius:20px;
     z-index:10;

@@ -1,6 +1,6 @@
 <template>
     <section class="aboutUs">
-
+        <header-box></header-box>
         <div class="suMain">
             <p class="position-tips text_size_17">当前位置 : 首页 > 成功案例</p>
 
@@ -8,32 +8,32 @@
                  <ul>
                      <li class="search_item">
                          <div class="search_left">区&nbsp;&nbsp;&nbsp;&nbsp;域&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
-                         <div class="search_right text_size_14">
-                              <p class="search_right_word text_size_14" v-for="(item,index) in 20" :key="index" >虎门镇</p>
+                         <div class="search_right ">
+                              <p class="search_right_word " v-for="(item,index) in 20" :key="index" >虎门镇</p>
                          </div>
                      </li>
-                     <hr/>
+                     <div class="bottom_line"></div>
                      <li class="search_item">
                          <div class="search_left">业&nbsp;&nbsp;&nbsp;&nbsp;态&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
                          <div>
                               
                          </div>
                      </li>
-                     <hr/>
+                     <div class="bottom_line"></div>
                      <li class="search_item">
                          <div class="search_left">面&nbsp;&nbsp;&nbsp;&nbsp;积&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
                          <div>
                               
                          </div>
                      </li>
-                     <hr/>
+                     <div class="bottom_line"></div>
                      <li class="search_item">
                          <div class="search_left">月租金&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
                          <div>
                               
                          </div>
                      </li>
-                     <hr/>
+                     <div class="bottom_line"></div>
                      <li class="search_item">
                          <div class="search_left">类&nbsp;&nbsp;&nbsp;&nbsp;型&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
                          <div>
@@ -80,16 +80,23 @@
                <div class="stores-btn">联系人工客服</div>
            </div>
         </div> 
+        <footer-box></footer-box>
     </section>
 </template>
 <script>
+import headerBox from "@/components/common/headerBox";
+import footerBox from "@/components/common/footerBox";
 export default {
     name:"aboutUs",
     data(){
         return{
 
         }
-    }
+    },
+ components:{
+    headerBox,
+    footerBox
+  }
 }
 </script>
 <style scoped>
@@ -103,7 +110,13 @@ export default {
 
     .search_item{
         display:flex;
-        padding:10px 0;
+        padding:12px 0;
+    }
+
+    .bottom_line{
+        width:100%;
+        height:1px;
+        background:#CDCDCD;
     }
 
     .search_left{
@@ -120,8 +133,13 @@ export default {
 
     .search_right_word{
         margin-right:15px;
-        padding-bottom:12px;
+        line-height:24px;
         cursor:pointer;
+    }
+
+    .search_right_word:hover{
+        font-weight:bold;
+        color:#6A6AFF;
     }
 
     .storeList{
@@ -131,15 +149,18 @@ export default {
     .storeItem{
         position:relative;
         display:flex;
-        border:2px solid rgba(239,239,239,1);
+        border:1px solid #CDCDCD;
         padding:5px 15px 10px 2px;
         margin-bottom:20px;
+        cursor: pointer;
+        transition: all .3s linear;
     }
 
     .storeItem:hover{
         background:linear-gradient(30deg,white,lightcyan,lightcyan);
-        cursor: pointer;
         transform: scaleY(1.1);
+        border-radius:10px;
+        z-index:10;
     }
 
     .hot-Push{

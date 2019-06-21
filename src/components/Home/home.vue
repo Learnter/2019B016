@@ -1,17 +1,20 @@
 <template>
     <div id="homePage">
+
+        <header-box></header-box>
+
         <!-- 中间主内容 -->
         <div class="main">
             <div class="logBox">
-                <div class="logItem text_size_17">
+                <div class="logItem text_size_17" @click="toggleBtn('/encyclopedia')">
                     <img class="logImg" src="../../assets/zpzpwz_4.png"/>
                     <p>开店百科</p>
                 </div>
-                <div class="logItem text_size_17">
+                <div class="logItem text_size_17"  @click="toggleBtn('/aboutUs')">
                     <img class="logImg" src="../../assets/zpzpwz_5.png"/>
                     <p>关于我们</p>
                 </div>
-                <div class="logItem text_size_17">
+                <div class="logItem text_size_17"  @click="toggleBtn('/success')">
                     <img class="logImg" src="../../assets/zpzpwz_6.png"/>
                     <p>成功案例</p>
                 </div>
@@ -23,7 +26,7 @@
                 <div class="connectService">
                     <div class="connect-item" v-for="(item,index) in 4" :key="index">
                           <div class="connect-item-img">
-                            <img src="../../assets/zpzpwz_8.png" alt="加载失败">
+                            <img class="connect-img-size" src="../../assets/zpzpwz_8.png" alt="加载失败">
                           </div>
                           <div class="connect-service-info">
                               <div class="store-right-li text_size_14">
@@ -35,14 +38,16 @@
                                   <span style="color:#2A9DFF">12546789456</span>
                               </div>
                           </div>
-                          <div class="connect-btn text_size_14 flex_row">
-                              <div class="connect_btn_icon ">
-                                  <img src="../../assets/zpzp_2.png" alt="加载失败">
-                              </div>
-                              <span>在线咨询</span>
+                          <div>
+                            <a class=" connect-btn text_size_14 flex_row" href="tencent://message/?Site=baidu.com&uin=235065284&Menu=yes">
+                                <div class="connect_btn_icon ">
+                                        <img src="../../assets/zpzp_2.png" alt="加载失败">
+                                </div>
+                                <span>在线咨询</span>
+                            </a>
                           </div>  
                     </div>
-                </div>
+                </div> 
             </div>
             <div class="caseList">
                 <div class="caseTips">
@@ -115,11 +120,13 @@
         </div>
 
         <!-- 底部栏 -->
-        <!-- <footer-box></footer-box> -->
+        <footer-box></footer-box> 
         
     </div>
 </template>
 <script>  
+    import headerBox from "@/components/common/headerBox";
+    import footerBox from "@/components/common/footerBox";
  export default {
      data(){
         return{
@@ -127,7 +134,17 @@
      },
      created(){
 
-     }
+     },
+     methods:{
+         toggleBtn(path){
+            sessionStorage.setItem("activePath",path);
+            this.$router.push(path);
+         }
+     },
+ components:{
+    headerBox,
+    footerBox
+  }
  }
 </script>
 <style scoped>
@@ -154,11 +171,13 @@
         cursor: pointer;
         transition: transform 0.2s linear;
         overflow: hidden;
+        transition:all .3s linear;
     }
 
     .logItem:hover{
         transform:scale(0.9) ;
         background:linear-gradient(30deg,lightcyan,white,lightcyan);
+        border-radius:10px;
         font-size:26px;
         font-weight:bold;
         
@@ -193,6 +212,7 @@
 
 
     .connectService{
+        position: relative;
         width:100%;
         display:flex;
         justify-content:space-between;
@@ -211,10 +231,18 @@
         align-items:center;
         justify-content:space-between;
         cursor: pointer;
-
+        transition:transform .2s ease;
 
     }
 
+    .connect-item:hover{
+        transform:scale(1.1);
+        box-shadow:0 0 10px #c4d9f5;
+        background:linear-gradient(120deg,lightcyan,lightcyan,#c4d9f5);
+        border-radius:10px;
+        z-index:10;
+
+    }
     .connect-item-img{
         width:143px;
         height:143px;
@@ -226,9 +254,9 @@
         transform:rotate(-30deg) scale(1.2);
         box-shadow: 0 0 20px 5px lightcyan;
         z-index:10;
+        
 
     }
-
 
     .connect-service-info{
         width:100%;
@@ -239,6 +267,7 @@
     .margin-top{
         margin-top:15px;
     }
+
 
     .connect-btn{
         color:white;
@@ -251,11 +280,6 @@
         cursor: pointer;
     }
 
-    .connect-btn:hover{
-        font-size:22px;
-        color:black;
-
-    }
 
     .connect_btn_icon{
         width:23px;
@@ -320,12 +344,15 @@
         border:2px solid rgba(239,239,239,1);
         padding:5px 15px 10px 2px;
         margin-bottom:20px;
+        cursor: pointer;
+        transition: all .3s linear;
     }
 
     .storeItem:hover{
-        background:linear-gradient(30deg,white,lightcyan,lightcyan);
-        cursor: pointer;
+        background:linear-gradient(to left bottom,lightcyan,white,lightblue);
         transform: scaleY(1.1);
+        border-radius:10px;
+        z-index:10;
     }
 
     .hot-Push{

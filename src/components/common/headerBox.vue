@@ -3,7 +3,7 @@
         <div class="topBar">
         <div>
             <label>
-               热线电话:<span>0769-4998215</span>
+               热线电话:<span>400-0678-183</span>
             </label>   
         </div>
         <div class="topBar-right">
@@ -12,12 +12,12 @@
        </div>
        <div class="navBar">
             <div class="navContent">
-                <div class="navContent-left">
-                    <img src="../../assets/zpzpwz_3.png" alt="加载失败">
+                <div class="navContent-left" @click="logoBtn">
+                        <img src="../../assets/zpzpwz_3.png" alt="加载失败">
                 </div>
                 <div>
                     <ul class=" navContent-right flex_row">
-                        <li class="navContent_right_li" :class="active == item.name ? 'selected' : ' '"  v-for="(item,index) in navInfo" :key="index" @click = "toggleNav(item)">
+                        <li class="navContent_right_li" :class="active == item.path ? 'selected' : ' '"  v-for="(item,index) in navInfo" :key="index" @click = "toggleNav(item)">
                             <span class="tabBtn">{{item.name}}</span>
                         </li>
                     </ul>
@@ -45,7 +45,7 @@ export default {
     name:"headerBox",
     data(){
         return{
-            active:"首页", //切换导航索引
+            active:"/home", //切换导航的路径
             navInfo:[{id:0,name:"首页",path:"/home"},{id:1,name:"开店百科",path:"/encyclopedia"},
                     {id:2,name:"成功案例",path:"/success"},{id:3,name:"关于我们",path:"/aboutUs"}],
             swiperOption:{ //轮播的参数
@@ -71,30 +71,23 @@ export default {
         this.refresh();
     },
     methods:{
-
+        //点击导航切换
         toggleNav(item){
-            this.active = item.name;
+            this.active = item.path;
             this.$router.push(item.path); 
+            sessionStorage.setItem("activePath",item.path);
+        },
+        //点击logo
+        logoBtn(){
+            sessionStorage.setItem("activePath","/home");
+            this.active = "/home";
+            this.$router.push("/home");
         },
         //页面刷新 F5
         refresh(){
-           let path = location.hash.slice(1);
-            switch (path) {
-                case "/home":
-                    this.active = "首页";
-                    break;
-                case "/encyclopedia":
-                    this.active = "开店百科";
-                    break;
-                case "/details":
-                     this.active = "转铺详情";
-                    break;
-                case "/success":
-                     this.active = "成功案例";
-                    break;
-                case "/aboutUs":
-                    this.active = "关于我们";
-                    break;            
+           let path = sessionStorage.getItem("activePath");
+            if(path){
+                this.active = path;
             }
         }
     },
@@ -116,7 +109,7 @@ export default {
 
     .topBar{
         width:1200px;
-        font-size:20px;
+        font-size:14px;
         margin:10px auto;
         display:flex;
         align-items:center;

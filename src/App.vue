@@ -1,22 +1,12 @@
 <template>
   <div id="app">
-    <header-box></header-box>
-
     <router-view/>
-    
-    <footer-box></footer-box>
   </div>
 </template>
 
 <script>
-import headerBox from "@/components/common/headerBox";
-import footerBox from "@/components/common/footerBox";
 export default {
-  name: 'App',
-  components:{
-    headerBox,
-    footerBox
-  }
+  name: 'App'
 }
 </script>
 

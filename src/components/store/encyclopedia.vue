@@ -2,6 +2,7 @@
     <!-- 开店百科 -->
     <section class="encyclopedia">
 
+        <header-box></header-box>
         <div class="encyMain">
             <p class="position-tips text_size_17">当前位置 : 首页 &gt; 开店百科</p>
 
@@ -39,10 +40,12 @@
                <div class="stores-btn">联系人工客服</div>
            </div>
         </div>
+        <footer-box></footer-box>
     </section>
 </template>
 <script>
-
+import headerBox from "@/components/common/headerBox";
+import footerBox from "@/components/common/footerBox";
 export default {
     name:"encyclopedia",
     data(){
@@ -65,8 +68,8 @@ export default {
         }
     },
     components:{
-        // headerBox,
-        // footerBox
+        headerBox,
+        footerBox
     }
 }
 </script>
@@ -115,12 +118,15 @@ p{
     padding:10px;
     border:1px solid #EFEFEF;
     display:flex;
+    cursor: pointer;
+    transition: all .3s linear;
 }
 
 .store_item:hover{
     background:linear-gradient(30deg,white,lightcyan,lightcyan);
-    cursor: pointer;
     transform: scaleY(1.1);
+    border-radius:10px;
+    z-index:10;    
 }
 
 .store_picture{

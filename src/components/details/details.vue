@@ -1,6 +1,8 @@
 <template>
     <section class="storeDetails">
 
+        <header-box></header-box>
+
         <div class="deMain">
 
            <p class="position-tips text_size_17">当前位置 : 首页 > 精选店铺</p>
@@ -198,18 +200,23 @@
                 </div>
             </div>
         </div>
-
+     <footer-box></footer-box>
     </section>
 </template>
 <script>
-
+import headerBox from "@/components/common/headerBox";
+import footerBox from "@/components/common/footerBox";
 export default {
     name:"storeDetails",
     data(){
         return{
 
         }
-    }
+    },
+components:{
+    headerBox,
+    footerBox
+  }
 }
 </script>
 <style scoped>
@@ -231,14 +238,6 @@ export default {
     line-height:24px;
 }
 
-/* .delStatus{
-    font-size:16px;
-    font-family:MicrosoftYaHei;
-    font-weight:400;
-    text-decoration:line-through;
-    color:#A8ACAB;
-    line-height:24px;
-} */
 
 .deMain{
     width:1200px;

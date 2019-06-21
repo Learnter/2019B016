@@ -11,7 +11,7 @@
                            首页 | 商铺转让 | 我要找店 | 找店地址 | APP下载 | 关于我们 | 开店百科 | 站内新闻
                        </p>
                        <p>
-                           联系电话 : <span class="word_blue">0769-459215</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公司地址 : 广东省东莞市虎门镇北栅社区东坊路东方大厦1301
+                           联系电话 : <span class="word_blue">0769-33655799</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公司地址 : 广东省东莞市虎门镇北栅社区东坊路东方大厦13A08
                        </p>
                    </div>             
              </div>
@@ -35,7 +35,7 @@ export default {
     .footerBox{
         width:100%;
         min-width:1200px;
-        height:259px;
+        height:208px;
         background:#EA3323;
     }
     .footerContent{
@@ -46,7 +46,7 @@ export default {
         display:flex;
         justify-content:space-between;
         align-items:center;
-        font-size:18px;
+        font-size:16px;
         font-weight:400;
     }
     .footer-left{
@@ -56,8 +56,8 @@ export default {
         justify-content:space-between;
     }
     .footer-right{
-        width:158px;
-        height:158px;
+        width:128px;
+        height:128px;
         overflow:hidden;
     }
 
@@ -68,14 +68,15 @@ export default {
 
     .footer-left-top{
        display:flex;
-       margin-bottom:20px;
+       margin-bottom:15px;
     }
     .footer-left-logo{
-        width:157px;
-        height:71px;
+        width:127px;
+        height:57px;
     }
     .footer-tips{
         margin-left:30px;
+        padding:5px 0;
         display:flex;
         flex-direction:column;
         justify-content:space-between;
