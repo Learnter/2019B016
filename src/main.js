@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import reset from "reset-css";
+import https from "./axios/https";
+
+Vue.prototype.$https = https;
 
 Vue.config.productionTip = false
 

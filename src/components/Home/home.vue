@@ -24,24 +24,24 @@
                     联系客服
                 </div>
                 <div class="connectService">
-                    <div class="connect-item" v-for="(item,index) in 4" :key="index">
+                    <div class="connect-item" v-for="(item,index) in servicesInfo" :key="index">
                           <div class="connect-item-img">
-                            <img class="connect-img-size" src="../../assets/zpzpwz_8.png" alt="加载失败">
+                            <img class="connect-img-size" :src="item.avatar" alt="加载失败">
                           </div>
                           <div class="connect-service-info">
                               <div class="store-right-li text_size_14">
                                   <span>客服</span>
-                                  <span>已有2561人咨询</span>
+                                  <span>已有{{item.service_num}}人咨询</span>
                               </div>
                               <div class="store-right-li margin-top text_size_17">
-                                  <span>张小姐</span>
-                                  <span style="color:#2A9DFF">12546789456</span>
+                                  <span>{{item.username}}</span>
+                                  <span style="color:#2A9DFF">{{item.mobile}}</span>
                               </div>
                           </div>
                           <div>
                             <a class=" connect-btn text_size_14 flex_row" href="tencent://message/?Site=baidu.com&uin=235065284&Menu=yes">
                                 <div class="connect_btn_icon ">
-                                        <img src="../../assets/zpzp_2.png" alt="加载失败">
+                                        <img src="../../assets/zpzp_2.png"/>
                                 </div>
                                 <span>在线咨询</span>
                             </a>
@@ -130,15 +130,22 @@
  export default {
      data(){
         return{
+            servicesInfo:[]
         }
      },
      created(){
-
+         this.fetchService();
      },
      methods:{
          toggleBtn(path){
             sessionStorage.setItem("activePath",path);
             this.$router.push(path);
+         },
+         fetchService(){
+             let url = "index/customerServiceList";
+             this.$https.get(url).then( res => {
+                 this.servicesInfo = res.data.data;
+             })
          }
      },
  components:{
@@ -246,6 +253,8 @@
     .connect-item-img{
         width:143px;
         height:143px;
+        background:#999999;
+        overflow: hidden;
         border-radius:50%;
         transition: box-shadow 0.2s linear;
     }

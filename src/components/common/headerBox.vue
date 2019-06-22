@@ -3,7 +3,7 @@
         <div class="topBar">
         <div>
             <label>
-               热线电话:<span>400-0678-183</span>
+               热线电话:&nbsp;<span>{{company_phone}}</span>
             </label>   
         </div>
         <div class="topBar-right">
@@ -45,6 +45,7 @@ export default {
     name:"headerBox",
     data(){
         return{
+            company_phone:" ",
             active:"/home", //切换导航的路径
             navInfo:[{id:0,name:"首页",path:"/home"},{id:1,name:"开店百科",path:"/encyclopedia"},
                     {id:2,name:"成功案例",path:"/success"},{id:3,name:"关于我们",path:"/aboutUs"}],
@@ -66,6 +67,10 @@ export default {
             },
          swiperList:["https://qn.kemean.cn/upload/201812/30/9def8f65f53c4a96b28232b3b5d5cf68", "https://qn.kemean.cn/upload/201812/30/4b6f813967de4d8d954ba4b096e4a858", "https://qn.kemean.cn/upload/201812/30/82f4c4a05be44e9fa607ff066903cb59"]           
         }
+    },
+    created(){
+        this.company_phone = sessionStorage.getItem("company_phone");
+        console.log(this.company_phone);
     },
     mounted(){
         this.refresh();
