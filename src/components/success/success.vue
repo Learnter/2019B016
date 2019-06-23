@@ -45,29 +45,29 @@
 
 
             <div class="storeList">
-                    <div class="storeItem" v-for="(item,index) in 3" :key="index">
+                    <div class="storeItem" v-for="(item,index) in successCaseList" :key="index"  @click=toDetail(item)>
                         <div class="hot-Push text_size_17">
-                            已转出
+                           {{item.tag_info[0].name}}
                         </div>
                         <div class="store-left">
-                            <img src="../../assets/zpzpwz_16.png" alt="加载失败" style="width：100%;height:100%">
+                            <img :src="item.img_info.img_url" alt="加载失败">
                         </div>
                         <div class="store-right">
                             <div class="store-right-li">
-                                <span class="text_size_17">转租大朗长富步行街的店铺</span>
-                                <p>&yen;<span class="text_size_17 word_red">1200</span>/月</p>
+                                <span class="text_size_17">{{item.title}}</span>
+                                <p>&yen;&nbsp;<span class="text_size_17 word_red">{{item.month_price*1}}</span>/月</p>
                             </div>
                             <div  class="store-right-li">
-                                <p>临街店铺  &nbsp;&nbsp;&nbsp;&nbsp; 电话:<span class="word_blue">132156878945</span></p>
-                                 <p>转让费 : <span class="word_red">3.8万</span></p>
+                                <p>临街店铺  &nbsp;&nbsp;&nbsp;&nbsp; 电话:&nbsp;<span class="word_blue"></span></p>
+                                 <p>转让费&nbsp;:&nbsp;<span class="word_red">{{item.unit_transfer_price}}</span></p>
                             </div>
                             <div  class="store-right-li">
-                                <span>地址 : 大朗长富步行街108号</span>
-                                 <p>面积 : <span class="word_red">56m&sup2;</span></p>
+                                <span>地址&nbsp;:&nbsp;{{item.twon}}</span>
+                                 <p>面积&nbsp;:&nbsp;<span class="word_red">{{item.shop_area}}m&sup2;</span></p>
                             </div>
                             <div  class="store-right-li">
-                                <span>上水 下水</span>
-                                 <p>业态 : 奶茶店</p>
+                                <span>{{item.city}} {{item.district}}</span>
+                                 <p>业态&nbsp;:&nbsp;{{item.cate_name}}</p>
                             </div>
                         </div>
                     </div>
@@ -90,8 +90,24 @@ export default {
     name:"aboutUs",
     data(){
         return{
-
+            successCaseList:[]
         }
+    },
+    created(){
+      this.fetchSuccessData();
+    },
+    methods:{
+       fetchSuccessData(){
+           let url = "index/successCaseList";
+           this.$https.get(url).then( res => {
+               this.successCaseList = res.data.data;
+           })
+       },
+       //点击切换到详情页面
+       toDetail(item){
+        let stopId = item.img_info.shop_id;
+        this.$router.push({path:"/details",query:{id:stopId}});
+       }
     },
  components:{
     headerBox,

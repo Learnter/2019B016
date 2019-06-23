@@ -13,9 +13,9 @@
                       <img src="../../assets/zpzpwz_42.png" alt="加载失败">
                    </div>
                    <div class="store_photos flex_row">
-                       <img class="store_picture_small" src="../../assets/zpzpwz_43.png" alt="加载失败">
-                       <img class="store_picture_small" src="../../assets/zpzpwz_43.png" alt="加载失败">
-                       <img class="store_picture_small" src="../../assets/zpzpwz_43.png" alt="加载失败">
+                       <div class="store_picture_small" v-for="(item,index) in storeDetail.imgs_info" :key="index" >
+                            <img :src="item.img_url"></img>
+                       </div>
                    </div>
                </div>
                <div class="store_right flex_col">
@@ -30,28 +30,28 @@
                    </div>
                    <div>
                         <div>
-                            <p class="text_size_32">东莞南城步行街 ( 转让 )</p>
-                            <p class="store_number">商店编号 : 13465228</p>
+                            <p class="text_size_32">{{storeDetail.detail_title}}</p>
+                            <p class="store_number">商店编号&nbsp;:&nbsp; {{storeDetail.username}}</p>
                         </div>
                         <div class="store_acount flex_row">
-                            <p><span class="acount_size">300</span>/m&sup2;</p>
-                            <p>&yen;<span class="acount_size">2500.00</span>元/月</p>
-                            <p><span class="acount_size">9万</span>/转让费</p>
+                            <p><span class="acount_size">{{storeDetail.shop_area}}</span>/m&sup2;</p>
+                            <p>&yen;&nbsp;<span class="acount_size">{{storeDetail.month_price*1}}</span>元/月</p>
+                            <p><span class="acount_size">{{storeDetail.unit_transfer_price}}</span>/转让费</p>
                         </div>
                         <div>
                             <div class="store_info_line ">
-                                <p class="info_line_style">行&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业 : <span class="text_size_16">品牌服装</span></p>
-                                <p class="info_line_style">经营状态 : <span class="text_size_16">暂无</span></p>
+                                <p class="info_line_style">行&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业 : <span class="text_size_16">{{storeDetail.cate_name}}</span></p>
+                                <p class="info_line_style">经营状态&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.business_status}}</span></p>
                             </div>
                             <div class="store_info_line">
-                                <p class="info_line_style">联&nbsp;&nbsp;系&nbsp;&nbsp;人 : <span class="text_size_16">李先生</span></p>
-                                <p class="info_line_style">产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;权 : <span class="text_size_16">暂无</span></p>
+                                <p class="info_line_style">联&nbsp;&nbsp;系&nbsp;&nbsp;人 : <span class="text_size_16">{{storeDetail.username}}</span></p>
+                                <p class="info_line_style">产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;权 : <span class="text_size_16">{{storeDetail.username}}</span></p>
                             </div>
                             <div class="store_info_line">
-                                <p>联系电话 : 13425494185</p>
+                                <p>联系电话&nbsp;:&nbsp;{{storeDetail.mobile}}</p>
                             </div>
                             <div class="store_info_line">
-                                <p>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址 : <span class="text_size_16">东莞南城步行街b2536号</span></p>
+                                <p>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址 : <span class="text_size_16">{{storeDetail.address}}</span></p>
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                            </div>
                            <span>联系店主</span>
                        </div>
-                       <p class="word_red">已有1565人浏览过 , 请尽早咨询</p>
+                       <p class="word_red">已有{{storeDetail.browse_num}}人浏览过 , 请尽早咨询</p>
                    </div>
                </div>
            </div>
@@ -98,9 +98,9 @@
                             <span class="text_size_18">经营状态</span>
                         </div>
                         <div class="basic_info_status flex_row">
-                            <p class="basic_info_status_li">当前经营 : <span class="text_size_16">服装店</span></p>
-                            <p class="basic_info_status_li">已有证件 : <span class="text_size_16">暂无</span></p>
-                            <p class="basic_info_status_li">经营状态 : <span class="text_size_16">营业中</span></p>
+                            <p class="basic_info_status_li">当前经营 : <span class="text_size_16">{{storeDetail.shop_type}}</span></p>
+                            <p class="basic_info_status_li">已有证件 : <span class="text_size_16">{{storeDetail.licensed_info}}</span></p>
+                            <p class="basic_info_status_li">经营状态 : <span class="text_size_16">{{storeDetail.business_status}}</span></p>
                         </div>
                     </div>
                     <div class="basicInfo_items">
@@ -109,10 +109,10 @@
                             <span class="text_size_18">物业信息</span>
                         </div>
                         <div class="basic_info_status flex_row">
-                            <p class="basic_info_status_li">楼&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;层 : <span class="text_size_16">服装店</span></p>
-                            <p class="basic_info_status_li">商店类型 : <span class="text_size_16">店铺无</span></p>
-                            <p class="basic_info_status_li">建筑面积 : <span class="text_size_16">300m&sup2;</span></p>
-                            <p class="basic_info_status_li">产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;权: <span class="text_size_16">暂无</span></p>
+                            <p class="basic_info_status_li">楼&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;层 : <span class="text_size_16">{{storeDetail.floor}}</span></p>
+                            <p class="basic_info_status_li">商店类型 : <span class="text_size_16">{{storeDetail.shop_type}}</span></p>
+                            <p class="basic_info_status_li">建筑面积 : <span class="text_size_16">{{storeDetail.construction_area}}m&sup2;</span></p>
+                            <p class="basic_info_status_li">产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;权: <span class="text_size_16">{{storeDetail.browse_num}}</span></p>
                         </div>
                     </div>
                     <div class="basicInfo_items">
@@ -121,9 +121,9 @@
                             <span class="text_size_18">位置信息</span>
                         </div>
                         <div class="basic_info_status flex_row">
-                            <p class="basic_info_status_li">区&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;域 : <span class="text_size_16">南城区</span></p>
-                            <p class="basic_info_status_li">临近街道 : <span class="text_size_16">是</span></p>
-                            <p class="basic_info_status_li">商&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;圈 : <span class="text_size_16">是</span></p>
+                            <p class="basic_info_status_li">区&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;域 : <span class="text_size_16">{{storeDetail.browse_num}}</span></p>
+                            <p class="basic_info_status_li">临近街道 : <span class="text_size_16">{{storeDetail.nearby_road}}</span></p>
+                            <p class="basic_info_status_li">商&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;圈 : <span class="text_size_16">{{storeDetail.browse_num}}</span></p>
                         </div>
                     </div>
                     <div class="basicInfo_items">
@@ -132,8 +132,8 @@
                             <span class="text_size_18">位置信息</span>
                         </div>
                         <div class="basic_info_status flex_row">
-                            <p class="basic_info_status_li">月&nbsp;&nbsp;租&nbsp;&nbsp;金 : <span class="text_size_16">2500.00元/月</span></p>
-                            <p class="basic_info_status_li">支付方式 : <span class="text_size_16">-</span></p>
+                            <p class="basic_info_status_li">月&nbsp;&nbsp;租&nbsp;&nbsp;金 : <span class="text_size_16">{{storeDetail.month_price}}元/月</span></p>
+                            <p class="basic_info_status_li">支付方式 : <span class="text_size_16">{{storeDetail.payment_method}}</span></p>
                         </div>
                     </div>
                     <div class="basicInfo_items">
@@ -142,7 +142,7 @@
                             <span class="text_size_18">租约信息</span>
                         </div>
                         <div class="basic_info_status flex_row">
-                            <p class="basic_info_status_li">支付方式 : <span class="text_size_16">9万元</span></p>
+                            <p class="basic_info_status_li">支付方式 : <span class="text_size_16">{{storeDetail.payment_method}}</span></p>
                         </div>
                     </div>
                 </div>
@@ -157,11 +157,11 @@
                     </div>
                     <div class="detail_picture">
                         <div class="one_photo">
-                            <img src="../../assets/zpzpwz_44.png" alt="加载失败">
+                            <img :src="storeDetail.shop_info" alt="加载失败">
                         </div>
                         <div class="two_photo">
-                            <img src="../../assets/zpzpwz_45.png" alt="加载失败">
-                            <img src="../../assets/zpzpwz_46.png" alt="加载失败">
+                            <img :src="storeDetail.periphery" alt="加载失败">
+                            <img :src="storeDetail.periphery" alt="加载失败">
                         </div>
                     </div>
             </div>
@@ -176,7 +176,7 @@
                             热推
                         </div>
                         <div class="store-left">
-                            <img src="../../assets/zpzpwz_16.png" alt="加载失败" style="width：100%;height:100%">
+                            <img src="../../assets/zpzpwz_16.png" alt="加载失败">
                         </div>
                         <div class="store-right">
                             <div class="store-right-li">
@@ -210,8 +210,25 @@ export default {
     name:"storeDetails",
     data(){
         return{
-
+            storeId:"",
+            storeDetail:{}
         }
+    },
+    created(){
+        // console.log(this.$route);
+        this.storeId = this.$route.query.id;
+        this.fetchData();
+    },
+    methods:{
+      fetchData(){
+          let url = "index/transferShopDetail";
+          let data = {
+              id:this.storeId
+          };
+          this.$https.get(url,data).then( res => {
+             this.storeDetail = res.data.data;
+          })
+      }
     },
 components:{
     headerBox,
@@ -260,7 +277,7 @@ components:{
     height:100%;
     justify-content:space-between; 
     margin-right:30px;
-    
+    overflow:hidden;
 }
 
 
@@ -271,12 +288,13 @@ components:{
 }
 
 .store_photos{
-    justify-content:space-between;
+ justify-content:space-between;
 }
 
 .store_picture_small{
-    width:200px;
+    /*width:200px;*/
     height:132px;
+    margin-right:5px;
     cursor: pointer;
 }
 

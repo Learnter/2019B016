@@ -70,7 +70,6 @@ export default {
     },
     created(){
         this.company_phone = sessionStorage.getItem("company_phone");
-        console.log(this.company_phone);
     },
     mounted(){
         this.refresh();

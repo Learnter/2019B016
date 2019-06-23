@@ -39,7 +39,7 @@
                               </div>
                           </div>
                           <div>
-                            <a class=" connect-btn text_size_14 flex_row" href="tencent://message/?Site=baidu.com&uin=235065284&Menu=yes">
+                            <a class=" connect-btn text_size_14 flex_row" :href="'tencent://message/?Site=baidu.com&Menu=yes&uin='+item.qq">
                                 <div class="connect_btn_icon ">
                                         <img src="../../assets/zpzp_2.png"/>
                                 </div>
@@ -130,21 +130,32 @@
  export default {
      data(){
         return{
-            servicesInfo:[]
+            servicesInfo:[],
+            choicenessData:[]
         }
      },
      created(){
          this.fetchService();
+         this.fetchChoiceness();
      },
      methods:{
          toggleBtn(path){
             sessionStorage.setItem("activePath",path);
             this.$router.push(path);
          },
+         //获取客服资料
          fetchService(){
              let url = "index/customerServiceList";
              this.$https.get(url).then( res => {
                  this.servicesInfo = res.data.data;
+             })
+         },
+         //获取精选店铺内容
+         fetchChoiceness(){
+             let url = "index/featuredShopList";
+             this.$https.get(url).then( res => {
+                //  this.choicenessData = res.data.data;
+                 console.log(res);
              })
          }
      },
@@ -182,7 +193,7 @@
     }
 
     .logItem:hover{
-        transform:scale(0.9) ;
+        transform:scale(0.9);
         background:linear-gradient(30deg,lightcyan,white,lightcyan);
         border-radius:10px;
         font-size:26px;
@@ -245,7 +256,7 @@
     .connect-item:hover{
         transform:scale(1.1);
         box-shadow:0 0 10px #c4d9f5;
-        background:linear-gradient(120deg,lightcyan,lightcyan,#c4d9f5);
+        background:linear-gradient(30deg,lightblue,white,lightcyan);
         border-radius:10px;
         z-index:10;
 
@@ -256,15 +267,6 @@
         background:#999999;
         overflow: hidden;
         border-radius:50%;
-        transition: box-shadow 0.2s linear;
-    }
-
-    .connect-item-img:hover{
-        transform:rotate(-30deg) scale(1.2);
-        box-shadow: 0 0 20px 5px lightcyan;
-        z-index:10;
-        
-
     }
 
     .connect-service-info{
