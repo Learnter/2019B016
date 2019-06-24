@@ -18,7 +18,7 @@
              <p>{{storeInfo.copyright}}&nbsp;&nbsp;&nbsp;备案号&nbsp;:&nbsp;{{storeInfo.case_number}}站长统计</p>
            </div>
            <div class="footer-right">
-               <img :src="storeInfo.qr_code" alt="二维码图片">
+               <img :src="storeInfo.qr_code">
            </div>
         </div>
     </section>

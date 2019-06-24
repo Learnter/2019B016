@@ -9,34 +9,40 @@
                      <li class="search_item">
                          <div class="search_left">区&nbsp;&nbsp;&nbsp;&nbsp;域&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
                          <div class="search_right ">
-                              <p class="search_right_word " v-for="(item,index) in 20" :key="index" >虎门镇</p>
+                             
                          </div>
                      </li>
                      <div class="bottom_line"></div>
                      <li class="search_item">
                          <div class="search_left">业&nbsp;&nbsp;&nbsp;&nbsp;态&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
-                         <div>
-                              
+                         <div class="search_right ">
+                             <div class="search_right_word search_right" v-for="(item,index) in categoryData.industryCate" :key="index" @click="showChild(item)">
+                                 {{item.name}}
+                             </div> 
+                             <div class="search_right_word search_rigtht_child" v-for="(childItem,childIndex) in categoryChild" :key="childIndex" @click="showChild(childItem)">
+                                     {{childItem.name}}
+                            </div>
                          </div>
                      </li>
                      <div class="bottom_line"></div>
                      <li class="search_item">
                          <div class="search_left">面&nbsp;&nbsp;&nbsp;&nbsp;积&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
-                         <div>
-                              
+                         <div class="search_right">
+                              <p class="search_right_word" v-for="(item,index) in categoryData.area" :key="index">{{item.title}}</p>
                          </div>
                      </li>
                      <div class="bottom_line"></div>
                      <li class="search_item">
                          <div class="search_left">月租金&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
-                         <div>
-                              
+                         <div  class="search_right">
+                              <P class="search_right_word" v-for="(item,index) in categoryData.monthlyRent" :key="index">{{item.title}}</P>
                          </div>
                      </li>
                      <div class="bottom_line"></div>
                      <li class="search_item">
                          <div class="search_left">类&nbsp;&nbsp;&nbsp;&nbsp;型&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
-                         <div>
+                         <div class="search_right" v-if="categoryData.shopType">
+                              <P class="search_right_word"  v-for="(item,index) in categoryData.shopType" :key="index">{{item}}</P>
                               
                          </div>
                      </li>
@@ -46,28 +52,28 @@
 
             <div class="storeList">
                     <div class="storeItem" v-for="(item,index) in successCaseList" :key="index"  @click=toDetail(item)>
-                        <div class="hot-Push text_size_17">
-                           {{item.tag_info[0].name}}
+                        <div class="hot-Push">
+                           推荐
                         </div>
                         <div class="store-left">
-                            <img :src="item.img_info.img_url" alt="加载失败">
+                            <img :src="item.img_info.img_url">
                         </div>
                         <div class="store-right">
                             <div class="store-right-li">
-                                <span class="text_size_17">{{item.title}}</span>
-                                <p>&yen;&nbsp;<span class="text_size_17 word_red">{{item.month_price*1}}</span>/月</p>
+                                <span v-if="item.title" class="text_size_17">{{item.title}}</span>
+                                <p v-if="item.unit_month_price">&yen;&nbsp;<span class="text_size_17 word_red">{{item.unit_month_price}}</span></p>
                             </div>
                             <div  class="store-right-li">
-                                <p>临街店铺  &nbsp;&nbsp;&nbsp;&nbsp; 电话:&nbsp;<span class="word_blue"></span></p>
-                                 <p>转让费&nbsp;:&nbsp;<span class="word_red">{{item.unit_transfer_price}}</span></p>
+                                <p v-if="item.mobile">临街店铺  &nbsp;&nbsp;&nbsp;&nbsp; 电话:&nbsp;<span class="word_blue">{{item.mobile}}</span></p>
+                                 <p v-if="item.unit_transfer_price">转让费&nbsp;:&nbsp;<span class="word_red">{{item.unit_transfer_price}}</span></p>
                             </div>
                             <div  class="store-right-li">
-                                <span>地址&nbsp;:&nbsp;{{item.twon}}</span>
-                                 <p>面积&nbsp;:&nbsp;<span class="word_red">{{item.shop_area}}m&sup2;</span></p>
+                                <span v-if="item.twon">地址&nbsp;:&nbsp;{{item.twon}}</span>
+                                 <p v-if="item.shop_area">面积&nbsp;:&nbsp;<span class="word_red">{{item.shop_area}}m&sup2;</span></p>
                             </div>
                             <div  class="store-right-li">
-                                <span>{{item.city}} {{item.district}}</span>
-                                 <p>业态&nbsp;:&nbsp;{{item.cate_name}}</p>
+                                <span >{{item.city}}-{{item.district}}</span>
+                                 <p v-if="item.cate_name">业态&nbsp;:&nbsp;{{item.cate_name}}</p>
                             </div>
                         </div>
                     </div>
@@ -90,18 +96,43 @@ export default {
     name:"aboutUs",
     data(){
         return{
-            successCaseList:[]
+            categoryData:{}, //搜索的参数
+            categoryChild:{}, //参数的子数据
+            successCaseList:[],//成功案例的列表
         }
     },
     created(){
+      this.fetchCategory();
       this.fetchSuccessData();
     },
     methods:{
-       fetchSuccessData(){
+        fetchCategory(){ //获取分类列表的数据
+            let url = "config/searchParam";
+            this.$https.get(url).then( res => {
+                // console.log(res)
+                this.categoryData = res.data.data;
+            })
+        },
+       fetchSuccessData(){//获取成功案例的数据
            let url = "index/successCaseList";
            this.$https.get(url).then( res => {
                this.successCaseList = res.data.data;
            })
+       },
+       //点击搜索列表传递二级数据,并通知后端。
+       showChild(item){
+
+          this.categoryChild = item.child;
+
+           let data = {
+               "cate_id":item.id
+           }
+
+          let url = "index/successCaseList";
+           this.$https.get(url,data).then( res => {
+               this.successCaseList = res.data.data;
+         })
+
        },
        //点击切换到详情页面
        toDetail(item){
@@ -158,6 +189,17 @@ export default {
         color:#6A6AFF;
     }
 
+
+
+    .search_rigtht_child{
+        font-size:12px;
+        font-weight:bold;
+    }
+
+
+
+
+
     .storeList{
         margin-top:20px;
     }
@@ -169,11 +211,10 @@ export default {
         padding:5px 15px 10px 2px;
         margin-bottom:20px;
         cursor: pointer;
-        transition: all .3s linear;
     }
 
     .storeItem:hover{
-        background:linear-gradient(30deg,white,lightcyan,lightcyan);
+        background:linear-gradient(to left bottom,lightcyan,white,lightblue);
         transform: scaleY(1.1);
         border-radius:10px;
         z-index:10;

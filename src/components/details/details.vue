@@ -9,49 +9,59 @@
 
            <div class="storeInfo flex_row">
                <div class="store_picture flex_col">
-                   <div class="store_picture_big">
-                      <img src="../../assets/zpzpwz_42.png" alt="加载失败">
+                   <div class="store_picture_big" v-if="storeDetail.video_url">
+                        <video width="612" height="382" controls>
+                            <source src="storeDetail.video_url"  type="video/mp4">
+                            您的浏览器不支持 HTML5 video 标签。
+                        </video>
                    </div>
-                   <div class="store_photos flex_row">
-                       <div class="store_picture_small" v-for="(item,index) in storeDetail.imgs_info" :key="index" >
-                            <img :src="item.img_url"></img>
-                       </div>
+                   <div class="store_picture_big" v-else>
+                      <img :src="bigImgUrl" alt="加载失败">
                    </div>
+                   <div >
+                        <!-- <img :src="item.img_url" class="store_picture_small" v-for="(item,index) in storeDetail.imgs_info" :key="index"  "/> -->
+                        <swiper class="store_photos_item" :options="swiperOption" ref="mySwiper">
+                        <!-- slides -->
+                        <swiper-slide v-for="(item,index) in storeDetail.imgs_info" :key="index">
+                            <img class="store_picture_small" :src="item.img_url" @mouseover="toggleImg(item.img_url)"/>
+                        </swiper-slide>
+                        <!-- Optional controls -->
+                        </swiper>
+                   </div>
+                   
                </div>
                <div class="store_right flex_col">
-                   <div class="store_icon position">
-                       <img src="../../assets/zpzpwz_29.png" alt="加载失败">
-                   </div>
-                   <div class="store_icon share">
-                       <img src="../../assets/zpzpwz_30.png" alt="加载失败">
-                   </div>
                    <div class="store_chapter">
                         <img src="../../assets/yz.png" alt="加载失败">
                    </div>
                    <div>
                         <div>
                             <p class="text_size_32">{{storeDetail.detail_title}}</p>
-                            <p class="store_number">商店编号&nbsp;:&nbsp; {{storeDetail.username}}</p>
                         </div>
                         <div class="store_acount flex_row">
-                            <p><span class="acount_size">{{storeDetail.shop_area}}</span>/m&sup2;</p>
-                            <p>&yen;&nbsp;<span class="acount_size">{{storeDetail.month_price*1}}</span>元/月</p>
-                            <p><span class="acount_size">{{storeDetail.unit_transfer_price}}</span>/转让费</p>
+                            <p class="store_acount_row" v-if="storeDetail.shop_area"><span class="acount_size">{{storeDetail.shop_area}}</span>/m&sup2;</p>
+                            <p class="store_acount_row" v-if="storeDetail.month_price">&yen;&nbsp;<span class="acount_size">{{storeDetail.month_price*1}}</span>元/月</p>
+                            <p class="store_acount_row" v-if="storeDetail.unit_transfer_price"><span class="acount_size">{{storeDetail.unit_transfer_price}}</span>/转让费</p>
+                            <div class="store_icon position">
+                                <img src="../../assets/zpzpwz_29.png">
+                            </div>
+                            <div class="store_icon share">
+                                <img src="../../assets/zpzpwz_30.png">
+                            </div>
                         </div>
                         <div>
-                            <div class="store_info_line ">
-                                <p class="info_line_style">行&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业 : <span class="text_size_16">{{storeDetail.cate_name}}</span></p>
-                                <p class="info_line_style">经营状态&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.business_status}}</span></p>
+                            <div class="store_info_line " v-if="storeDetail.cate_name || storeDetail.business_status">
+                                <p class="info_line_style" v-if="storeDetail.cate_name">行&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.cate_name}}</span></p>
+                                <p class="info_line_style" v-if="storeDetail.business_status">经营状态&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.business_status}}</span></p>
                             </div>
-                            <div class="store_info_line">
-                                <p class="info_line_style">联&nbsp;&nbsp;系&nbsp;&nbsp;人 : <span class="text_size_16">{{storeDetail.username}}</span></p>
-                                <p class="info_line_style">产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;权 : <span class="text_size_16">{{storeDetail.username}}</span></p>
+                            <div class="store_info_line" v-if="storeDetail.username">
+                                <p class="info_line_style" v-if="storeDetail.username">联&nbsp;&nbsp;系&nbsp;&nbsp;人&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.username}}</span></p>
                             </div>
-                            <div class="store_info_line">
+                            <div class="store_info_line" v-if="storeDetail.mobile">
                                 <p>联系电话&nbsp;:&nbsp;{{storeDetail.mobile}}</p>
                             </div>
-                            <div class="store_info_line">
-                                <p>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址 : <span class="text_size_16">{{storeDetail.address}}</span></p>
+                            <div class="store_info_line" v-if="storeDetail.address">
+                                <p>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.address}}</span></p>
                             </div>
                         </div>
                     </div>
@@ -62,7 +72,7 @@
                            </div>
                            <span>联系店主</span>
                        </div>
-                       <p class="word_red">已有{{storeDetail.browse_num}}人浏览过 , 请尽早咨询</p>
+                       <p class="word_red">已有{{storeDetail.browse_num}}人浏览过&nbsp;,&nbsp;请尽早咨询</p>
                    </div>
                </div>
            </div>
@@ -75,11 +85,11 @@
                        <p class="second_line"></p>
                 </div>
                 <div class="tenament_items flex_row">
-                    <div class="tenament_item_li flex_col" v-for="(item,index) in 20" :key="index">
+                    <div class="tenament_item_li flex_col" v-for="(item,index) in storeDetail.facilities_info" :key="index">
                         <div class="tenament_icon">
-                            <img src="../../assets/zpzpwz_32.png" alt="加载失败">
+                            <img :src="item.img_url" alt="加载失败">
                         </div>
-                        <p class="status">天然气</p>
+                        <p class="status">{{item.name}}</p>
                     </div>
                 </div>
            </div>
@@ -92,57 +102,63 @@
                        <p class="second_line"></p>
                 </div>
                 <div>
-                    <div class="basicInfo_items">
+                    <div class="basicInfo_items" v-if="storeDetail.cate_name || storeDetail.license_info || storeDetail.licensed_info || storeDetail.business_status">
                         <div>
                             <span class="basic_line"></span>
                             <span class="text_size_18">经营状态</span>
                         </div>
                         <div class="basic_info_status flex_row">
-                            <p class="basic_info_status_li">当前经营 : <span class="text_size_16">{{storeDetail.shop_type}}</span></p>
-                            <p class="basic_info_status_li">已有证件 : <span class="text_size_16">{{storeDetail.licensed_info}}</span></p>
-                            <p class="basic_info_status_li">经营状态 : <span class="text_size_16">{{storeDetail.business_status}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.cate_name">当前经营&nbsp;:&nbsp; <span class="text_size_16">{{storeDetail.cate_name}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.license_info">已有证件&nbsp;:&nbsp; <span class="text_size_16">{{storeDetail.license_info}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.licensed_info">已有证件&nbsp;:&nbsp; <span class="text_size_16">{{storeDetail.licensed_info}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.business_status">经营状态&nbsp;:&nbsp; <span class="text_size_16">{{storeDetail.business_status}}</span></p>
                         </div>
                     </div>
-                    <div class="basicInfo_items">
+                    <div class="basicInfo_items" v-if="storeDetail.shop_type || storeDetail.construction_area || storeDetail.usage_area || storeDetail.floor || storeDetail.is_split || storeDetail.main_road">
                         <div>
                             <span class="basic_line"></span>
                             <span class="text_size_18">物业信息</span>
                         </div>
                         <div class="basic_info_status flex_row">
-                            <p class="basic_info_status_li">楼&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;层 : <span class="text_size_16">{{storeDetail.floor}}</span></p>
-                            <p class="basic_info_status_li">商店类型 : <span class="text_size_16">{{storeDetail.shop_type}}</span></p>
-                            <p class="basic_info_status_li">建筑面积 : <span class="text_size_16">{{storeDetail.construction_area}}m&sup2;</span></p>
-                            <p class="basic_info_status_li">产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;权: <span class="text_size_16">{{storeDetail.browse_num}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.shop_type">商铺类型&nbsp;:&nbsp; <span class="text_size_16">{{storeDetail.shop_type}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.construction_area">建筑面积&nbsp;:&nbsp; <span class="text_size_16">{{storeDetail.construction_area}}m&sup2;</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.usage_area">使用面积&nbsp;:&nbsp; <span class="text_size_16">{{storeDetail.usage_area}}m&sup2;</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.floor">楼&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;层&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.floor}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.is_split">是否分割&nbsp;:&nbsp; <span class="text_size_16">{{storeDetail.is_split}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.main_road">临近干道&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.main_road}}</span></p>
                         </div>
                     </div>
-                    <div class="basicInfo_items">
+                    <div class="basicInfo_items" v-if="storeDetail.district || storeDetail.loop_line || storeDetail.nearby_road ">
                         <div>
                             <span class="basic_line"></span>
                             <span class="text_size_18">位置信息</span>
                         </div>
                         <div class="basic_info_status flex_row">
-                            <p class="basic_info_status_li">区&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;域 : <span class="text_size_16">{{storeDetail.browse_num}}</span></p>
-                            <p class="basic_info_status_li">临近街道 : <span class="text_size_16">{{storeDetail.nearby_road}}</span></p>
-                            <p class="basic_info_status_li">商&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;圈 : <span class="text_size_16">{{storeDetail.browse_num}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.district">区&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;域&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.district}}-{{storeDetail.twon}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.loop_line">环&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.loop_line}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.nearby_road">临近道路&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.nearby_road}}</span></p>
                         </div>
                     </div>
-                    <div class="basicInfo_items">
+                    <div class="basicInfo_items" v-if="storeDetail.month_price || storeDetail.payment_method || storeDetail.timeshare_rental || storeDetail.longest_lease || storeDetail.renewal_method">
                         <div>
                             <span class="basic_line"></span>
-                            <span class="text_size_18">位置信息</span>
+                            <span class="text_size_18">租约相关</span>
                         </div>
                         <div class="basic_info_status flex_row">
-                            <p class="basic_info_status_li">月&nbsp;&nbsp;租&nbsp;&nbsp;金 : <span class="text_size_16">{{storeDetail.month_price}}元/月</span></p>
-                            <p class="basic_info_status_li">支付方式 : <span class="text_size_16">{{storeDetail.payment_method}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.month_price">月&nbsp;&nbsp;租&nbsp;&nbsp;金&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.month_price*1}}元/月</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.payment_method">支付方式&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.payment_method}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.timeshare_rental">分期出租&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.timeshare_rental}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.longest_lease">最长租约&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.longest_lease}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.renewal_method">续约方式&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.renewal_method}}</span></p>
                         </div>
                     </div>
-                    <div class="basicInfo_items">
+                    <div class="basicInfo_items" v-if="storeDetail.unit_transfer_price">
                         <div>
                             <span class="basic_line"></span>
-                            <span class="text_size_18">租约信息</span>
+                            <span class="text_size_18">转让相关</span>
                         </div>
                         <div class="basic_info_status flex_row">
-                            <p class="basic_info_status_li">支付方式 : <span class="text_size_16">{{storeDetail.payment_method}}</span></p>
+                            <p class="basic_info_status_li" v-if="storeDetail.unit_transfer_price">转让费用&nbsp;:&nbsp;<span class="text_size_16">{{storeDetail.unit_transfer_price}}</span></p>
                         </div>
                     </div>
                 </div>
@@ -156,12 +172,12 @@
                        <p class="second_line"></p>
                     </div>
                     <div class="detail_picture">
-                        <div class="one_photo">
-                            <img :src="storeDetail.shop_info" alt="加载失败">
+                        <div class="one_photo" v-if="storeDetail.shop_info">
+                            <img :src="storeDetail.shop_info">
                         </div>
-                        <div class="two_photo">
-                            <img :src="storeDetail.periphery" alt="加载失败">
-                            <img :src="storeDetail.periphery" alt="加载失败">
+                        <div class="two_photo" v-if="storeDetail.periphery">
+                            <img :src="storeDetail.periphery">
+                            <img :src="storeDetail.periphery">
                         </div>
                     </div>
             </div>
@@ -171,29 +187,29 @@
                     更多推荐
                 </div>
                 <div class="storeList">
-                    <div class="storeItem" v-for="(item,index) in 3" :key="index">
+                    <div class="storeItem" v-for="(item,index) in moreCase" :key="index"  @click=toDetail(item)>
                         <div class="hot-Push">
                             热推
                         </div>
                         <div class="store-left">
-                            <img src="../../assets/zpzpwz_16.png" alt="加载失败">
+                            <img src="item.img_info.img_url">
                         </div>
                         <div class="store-right">
                             <div class="store-right-li">
-                                <span class="text_size_17">转租大朗长富步行街的店铺</span>
+                                <span class="text_size_17">{{item.title}}</span>
                                 <span>24小时内</span>
                             </div>
                             <div  class="store-right-li">
-                                <p>行业 : 奶茶  电话 : <span class="word_blue">132156878945</span></p>
-                                <span>45平方米</span>
+                                <p>行业&nbsp;:&nbsp;{{item.cate_name}}&nbsp;&nbsp;&nbsp;&nbsp;电话&nbsp;:&nbsp;<span class="word_blue">{{item.mobile}}</span></p>
+                                <span v-if="item.shop_area">{{item.shop_area}}平方米</span>
                             </div>
                             <div  class="store-right-li">
-                                <span>地址 : 大朗长富步行街108号</span>
-                                <span>转让租金 : 面议</span>
+                                <span>地址&nbsp;:&nbsp;{{item.twon}}</span>
+                                <span>转让租金&nbsp;:&nbsp;{{item.unit_transfer_price}}</span>
                             </div>
                             <div  class="store-right-li">
-                                <span>上水 下水</span>
-                                <span>被查看548次</span>
+                                <span>{{item.city}}-{{item.district}}</span>
+                                <span>被查看{{item.browse_num}}次</span>
                             </div>
                         </div>
                     </div>
@@ -206,33 +222,68 @@
 <script>
 import headerBox from "@/components/common/headerBox";
 import footerBox from "@/components/common/footerBox";
+import "swiper/dist/css/swiper.css";
+import {swiper,swiperSlide} from "vue-awesome-swiper";
 export default {
     name:"storeDetails",
     data(){
         return{
-            storeId:"",
-            storeDetail:{}
+            storeId:"", //店铺Id
+            bigImgUrl:"", // 大图url
+            storeDetail:{},//店铺详情信息
+            moreCase:[],//更多推荐信息
+            swiperOption:{ //轮播的参数
+                slidesPerView: 3,
+                spaceBetween:10,
+                freeMode: true,
+            },
         }
     },
     created(){
-        // console.log(this.$route);
         this.storeId = this.$route.query.id;
         this.fetchData();
+        this.fetchMoreCase();
     },
     methods:{
-      fetchData(){
+      fetchData(){ //获取店铺详情的数据
           let url = "index/transferShopDetail";
           let data = {
               id:this.storeId
           };
           this.$https.get(url,data).then( res => {
              this.storeDetail = res.data.data;
+            //  console.log(res.data.data);
+             if(res.data.data.imgs_info){
+                 this.bigImgUrl = res.data.data.imgs_info[0].img_url;
+             }
           })
+      },
+      fetchMoreCase(){ //获取更多推荐数据
+          let url = "index/featuredShopList";
+          this.$https.get(url).then( res => {
+            this.moreCase = res.data.data; 
+        })  
+      },
+       toDetail(item){ //点击切换到详情页面
+        let stopId = item.img_info.shop_id;
+        this.$router.push({path:"/details",query:{id:stopId}});
+       },
+      toggleImg(url){ //点击切换大图
+         this.bigImgUrl = url;
       }
     },
 components:{
     headerBox,
-    footerBox
+    footerBox,
+    swiper,
+    swiperSlide,
+  },
+  watch:{
+      $route(to){ //监听路由改变,重新再获取数据 
+          this.storeId = to.query.id;
+          this.fetchData();
+          this.fetchMoreCase();
+      }
   }
 }
 </script>
@@ -265,7 +316,6 @@ components:{
 .storeInfo{
     box-sizing:border-box;
     width:100%;
-    height:613px;
     border:1px solid #EEEFF2;
     padding:20px 20px 60px;
     overflow: hidden;
@@ -274,7 +324,6 @@ components:{
 
 .store_picture{
     width:612px;
-    height:100%;
     justify-content:space-between; 
     margin-right:30px;
     overflow:hidden;
@@ -287,15 +336,17 @@ components:{
     cursor: pointer;
 }
 
-.store_photos{
- justify-content:space-between;
+.store_photos_item{
+    width:612px;
+    height:132px;
+    padding:10px 5px;
 }
 
-.store_picture_small{
-    /*width:200px;*/
-    height:132px;
-    margin-right:5px;
+.store_picture_small:hover{
     cursor: pointer;
+    opacity:0.9;
+    border-radius:5px;
+    box-shadow:0 0 10px 2px #979797 ;
 }
 
 .store_right{
@@ -312,10 +363,14 @@ components:{
 }
 
 .store_acount{
-    justify-content:space-between;
+    position: relative;
+    justify-content:flex-start;
     margin: 20px 0;
 }
 
+.store_acount_row{
+    margin-right:30px;
+}
 
 .store_info_line{
     margin-bottom:15px;
@@ -356,12 +411,12 @@ components:{
 
 .position{
     right: 75px;
-    top: 65px;
+    top: 0px;
 }
 
 .share{
-    top:65px;
-    right:0;
+    top:0px;
+    right:0px;
 }
 
 .store_chapter{
@@ -371,12 +426,6 @@ components:{
     right:0;
     bottom:0;
 }
-
-
-
-
-
-
 
 
 .tenament_items{
@@ -502,6 +551,14 @@ components:{
         border:2px solid rgba(239,239,239,1);
         padding:5px 15px 10px 2px;
         margin-bottom:10px;
+    }
+
+    .storeItem:hover{
+        cursor: pointer;
+        background:linear-gradient(to left bottom,lightcyan,white,lightblue);
+        transform: scaleY(1.1);
+        border-radius:10px;
+        z-index:10;
     }
 
     .hot-Push{

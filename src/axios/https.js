@@ -44,12 +44,12 @@ export default {
   post (url, data) {
     return axios({
       method: 'post',
-      baseURL: 'http://rest.apizza.net/mock/39803a938ae791610110c61f6d51194b/',
+      baseURL: 'https://home.pujingli.cn/',
       url,
       data: data,
       timeout: 10000,
       headers: {
-        'content-type': 'application/json'
+        'content-type':'application/json'
       }
     }).then(
       (response) => {
@@ -64,7 +64,7 @@ export default {
   get (url, params) {
     return axios({
       method: 'get',
-      baseURL: 'http://rest.apizza.net/mock/39803a938ae791610110c61f6d51194b/',
+      baseURL: 'https://home.pujingli.cn/',
       url,
       params, // get 请求时带的参数
       timeout: 10000,

@@ -117,13 +117,12 @@ p{
     margin-top:20px;
     padding:10px;
     border:1px solid #EFEFEF;
-    display:flex;
-    cursor: pointer;
-    transition: all .3s linear;
+    display:flex; 
 }
 
 .store_item:hover{
-    background:linear-gradient(30deg,white,lightcyan,lightcyan);
+    cursor: pointer;
+    background:linear-gradient(to left bottom,lightcyan,white,lightblue);
     transform: scaleY(1.1);
     border-radius:10px;
     z-index:10;    
