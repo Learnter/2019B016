@@ -65,6 +65,7 @@ export default {
     return axios({
       method: 'get',
       baseURL: 'https://home.pujingli.cn/',
+      // baseURL: 'http://rest.apizza.net/mock/39803a938ae791610110c61f6d51194b/',
       url,
       params, // get 请求时带的参数
       timeout: 10000,

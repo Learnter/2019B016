@@ -2,48 +2,59 @@
     <section class="aboutUs">
         <header-box></header-box>
         <div class="suMain">
-            <p class="position-tips text_size_17">当前位置 : 首页 > 成功案例</p>
+            <p class="position-tips text_size_17">当前位置&nbsp;:&nbsp;首页&nbsp;>&nbsp;成功案例</p>
 
              <div class="search-criteria">
                  <ul>
                      <li class="search_item">
-                         <div class="search_left">区&nbsp;&nbsp;&nbsp;&nbsp;域&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
-                         <div class="search_right ">
-                             
+                         <div class="search_left">区&nbsp;&nbsp;&nbsp;&nbsp;域&nbsp;:&nbsp;</div>
+                         <div class="flex_col" style="position:relative">
+                             <div :class="!isHidden == true?'isHidden':''" >
+                                 <span class="search_right_word"  :class="regionActive == regionIndex ? 'word_red' : ''"  v-for="(regionItem,regionIndex) in region" :key="regionIndex" @click.stop="searchRegion(regionItem,regionIndex)">{{regionItem.name}}</span>
+                             </div>
+                            
+                              <div class="search_right" style="margin-top:5px" v-if="regionChild.length !== 0">
+                                  <span class="search_right_word search_rigtht_child"  :class="recondRegActive == childIndex ? 'word_red' : ''"  v-for="(childItem,childIndex) in regionChild" :key="'child-'+childIndex" @click.stop="searchRecondRegion(childItem,childIndex)" >{{childItem.name}}</span>
+                              </div>
+                              <div class="loadMore"  @click="loadMore">
+                                   <img :src="loadMoreIcon" alt="">
+                              </div>
                          </div>
                      </li>
                      <div class="bottom_line"></div>
                      <li class="search_item">
-                         <div class="search_left">业&nbsp;&nbsp;&nbsp;&nbsp;态&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
-                         <div class="search_right ">
-                             <div class="search_right_word search_right" v-for="(item,index) in categoryData.industryCate" :key="index" @click="showChild(item)">
-                                 {{item.name}}
-                             </div> 
-                             <div class="search_right_word search_rigtht_child" v-for="(childItem,childIndex) in categoryChild" :key="childIndex" @click="showChild(childItem)">
-                                     {{childItem.name}}
+                         <div class="search_left">业&nbsp;&nbsp;&nbsp;&nbsp;态&nbsp;:&nbsp;</div>
+                         <div class="flex_col">
+                            <div class="search_right">
+                                <span class="search_right_word" :class="industryActive == industryIndex ? 'word_red' : ''" v-for="(item,industryIndex) in industryCate" :key="industryIndex" @click="showChild(item,industryIndex)">
+                                    {{item.name}}
+                                </span>
                             </div>
-                         </div>
+                            <div class="search_right" style="margin-top:5px" v-if="categoryChild.length !== 0">
+                                <span class="search_right_word search_rigtht_child" :class="recondInActive == childIndex ? 'word_red' : ''"  v-for="(childItem,childIndex) in categoryChild" :key="'child-'+childIndex" @click="searchRecondIndustry(childItem,childIndex)">
+                                    {{childItem.name}}</span>
+                            </div>    
+                        </div> 
                      </li>
                      <div class="bottom_line"></div>
                      <li class="search_item">
-                         <div class="search_left">面&nbsp;&nbsp;&nbsp;&nbsp;积&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
+                         <div class="search_left">面&nbsp;&nbsp;&nbsp;&nbsp;积&nbsp;:&nbsp;</div>
                          <div class="search_right">
-                              <p class="search_right_word" v-for="(item,index) in categoryData.area" :key="index">{{item.title}}</p>
+                              <span class="search_right_word" :class="areaActive == areaIndex ? 'word_red' : ''" v-for="(item,areaIndex) in areas" :key="areaIndex" @click="searchArea(item,areaIndex)">{{item.title}}</span>
                          </div>
                      </li>
                      <div class="bottom_line"></div>
                      <li class="search_item">
-                         <div class="search_left">月租金&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
+                         <div class="search_left">月租金&nbsp;:&nbsp;</div>
                          <div  class="search_right">
-                              <P class="search_right_word" v-for="(item,index) in categoryData.monthlyRent" :key="index">{{item.title}}</P>
+                              <span class="search_right_word" :class="moneyActive == moneyIndex ? 'word_red' : ''"  v-for="(item,moneyIndex) in monthlyRent" :key="moneyIndex" @click="searchMoney(item,moneyIndex)">{{item.title}}</span>
                          </div>
                      </li>
                      <div class="bottom_line"></div>
                      <li class="search_item">
-                         <div class="search_left">类&nbsp;&nbsp;&nbsp;&nbsp;型&nbsp;:&nbsp;<span class="word_red text_size_14">全部</span></div>
-                         <div class="search_right" v-if="categoryData.shopType">
-                              <P class="search_right_word"  v-for="(item,index) in categoryData.shopType" :key="index">{{item}}</P>
-                              
+                         <div class="search_left">类&nbsp;&nbsp;&nbsp;&nbsp;型&nbsp;:&nbsp;</div>
+                         <div class="search_right">
+                              <span class="search_right_word" :class="typeActive == typeIndex ? 'word_red' : ''"  v-for="(item,typeIndex) in shopType" :key="typeIndex" @click="searchType(item,typeIndex)">{{item.label}}</span>
                          </div>
                      </li>
                  </ul>
@@ -80,11 +91,11 @@
                 </div>
             
 
-            <div class="company-stores">
+            <!-- <div class="company-stores">
                <div class="stores-btn">发布找店信息</div>
                <div class="stores-btn">发布转铺信息</div>
                <div class="stores-btn">联系人工客服</div>
-           </div>
+           </div> -->
         </div> 
         <footer-box></footer-box>
     </section>
@@ -96,49 +107,249 @@ export default {
     name:"aboutUs",
     data(){
         return{
-            categoryData:{}, //搜索的参数
-            categoryChild:{}, //参数的子数据
-            successCaseList:[],//成功案例的列表
+            loadMoreIcon:require("../../assets/zpzp_69.png"),
+            isHidden:false, //是否隐藏
+            regionActive:0,//区域索引
+            recondRegActive:0,//二级区域索引
+            industryActive:0, //行业索引
+            recondInActive:0, //二级行业索引
+            areaActive:0, //面积索引
+            moneyActive:0,//租金索引
+            typeActive:0,//类型索引
+            regionData:[],//区域列表
+            regionChild:[],//区域二级数据
+            categoryData:{}, //搜索列表参数
+            categoryChild:{}, //行业二级数据
+            successCaseList:[],//成功案例列表
+            searchData:{  //搜索条件对象
+                'cate_id':'', //行业id
+                'area_min':'', //面积最低
+                'area_max':'', //最大面积
+                'rent_min':'', //最低租金
+                'rent_max':'', //最高租金
+                'city':'', // 市
+                'district':'', // 区
+                'twon':'', // 街道
+                'page':1, //页码
+                'rows':10, // 每页数量
+                'shop_type':'', //商铺类型
+            }
         }
     },
     created(){
+      this.fetchRegion();
       this.fetchCategory();
       this.fetchSuccessData();
     },
+    computed:{
+
+        //区域列表
+        region(){
+
+            let region = this.regionData;
+
+            let all = [{"id":0,name:"全部",child:[]}];
+
+            for(let obj in region){
+                all.push(region[obj]);
+            }
+
+            return all;
+
+        },
+        //行业列表
+        industryCate(){
+
+            let industryCate = this.categoryData.industryCate;
+            let all = [{"id":0,name:"全部",child:[]}]
+
+            for(let obj in industryCate){
+                all.push(industryCate[obj]);
+            }
+
+            return all;
+        },
+        //面积列表
+        areas(){
+
+            let areas = this.categoryData.area;
+            let all = [{"id":0,title:"全部",min:0,max:0}]
+
+            for(let obj in areas){
+                all.push(areas[obj]);
+            }
+            return all;
+        },
+        //租金列表
+        monthlyRent(){
+
+            let monthlyRent = this.categoryData.monthlyRent;
+            let all = [{"id":0,title:"全部",min:0,max:0}]
+
+            for(let obj in monthlyRent){
+                all.push(monthlyRent[obj]);
+            }
+            return all;
+        },
+        //类型列表
+        shopType(){
+
+            let shopType = this.categoryData.shopType;
+
+            let all = [{"value":0,"label":'全部'}]
+
+            for(let obj in shopType){
+
+                all.push(shopType[obj]);
+            }
+
+            return all;
+        }
+    },
     methods:{
-        fetchCategory(){ //获取分类列表的数据
+        //获取区域地址信息
+        fetchRegion(){
+            let url = "config/region";
+            this.$https.get(url).then( res => {
+                this.regionData = res.data.data;
+            })
+        },
+        //获取分类列表的数据
+        fetchCategory(){ 
             let url = "config/searchParam";
             this.$https.get(url).then( res => {
                 // console.log(res)
                 this.categoryData = res.data.data;
             })
         },
-       fetchSuccessData(){//获取成功案例的数据
+       //获取成功案例的数据
+       fetchSuccessData(){
            let url = "index/successCaseList";
            this.$https.get(url).then( res => {
                this.successCaseList = res.data.data;
            })
        },
-       //点击搜索列表传递二级数据,并通知后端。
-       showChild(item){
+       //地区一级搜索
+       searchRegion(item,index){
+           this.regionActive  =  index;
+           this.regionChild = item.child;
+           this.searchData.city = item.id;
+
+            let url = "index/successCaseList";
+
+           this.$https.get(url,this.searchData).then( res => {
+
+               this.successCaseList = res.data.data;
+         })
+       },
+       //地区二级搜索
+       searchRecondRegion(item,index){
+
+           this.recondRegActive  =  index;
+
+           this.searchData.district = item.id;
+
+           console.log(this.recondRegActive);
+
+            let url = "index/successCaseList";
+
+           this.$https.get(url,this.searchData).then( res => {
+
+               this.successCaseList = res.data.data;
+         })
+       },
+       //行业一级搜索
+       showChild(item,index){
+
+          this.industryActive = index;
 
           this.categoryChild = item.child;
 
-           let data = {
-               "cate_id":item.id
-           }
+          this.searchData.cate_id = item.id;
 
           let url = "index/successCaseList";
-           this.$https.get(url,data).then( res => {
+
+           this.$https.get(url,this.searchData).then( res => {
+
                this.successCaseList = res.data.data;
          })
+       },
+       //行业二级搜索
+       searchRecondIndustry(item,index){
 
+           this.recondInActive = index;
+           this.searchData.cate_id = item.id;
+
+           let url = "index/successCaseList";
+
+           this.$https.get(url,this.searchData).then( res => {
+
+               this.successCaseList = res.data.data;
+         })
+       },
+       //面积搜索
+       searchArea(item,index){
+
+           this.areaActive = index;
+
+           this.searchData.area_min = item.min;
+
+           this.searchData.area_max = item.max;
+
+           let url = "index/successCaseList";
+
+           this.$https.get(url,this.searchData).then( res => {
+               
+               this.successCaseList = res.data.data;
+         })
+           
+       },
+        //租金搜索
+       searchMoney(item,index){
+
+           this.moneyActive = index;
+
+           this.searchData.rent_min = item.min;
+
+           this.searchData.rent_max = item.max;
+
+           let url = "index/successCaseList";
+
+           this.$https.get(url,this.searchData).then( res => {
+               this.successCaseList = res.data.data;
+         })
+           
+       },
+        //类型搜索
+       searchType(item,index){
+
+           this.typeActive = index;
+
+           this.searchData.shop_type = item.value;
+
+           let url = "index/successCaseList";
+
+           this.$https.get(url,this.searchData).then( res => {
+
+               this.successCaseList = res.data.data;
+         })
+           
        },
        //点击切换到详情页面
        toDetail(item){
         let stopId = item.img_info.shop_id;
         this.$router.push({path:"/details",query:{id:stopId}});
+       },
+       //加载二级数据
+       loadMore(){
+           this.isHidden = !this.isHidden;
+           if(this.isHidden){
+               this.loadMoreIcon = require("../../assets/zpzp_24.png");
+           }else{
+                this.loadMoreIcon = require("../../assets/zpzp_69.png");
+           }
        }
+
     },
  components:{
     headerBox,
@@ -149,6 +360,25 @@ export default {
 <style scoped>
 
 
+    .isHidden{
+        overflow:hidden; 
+        text-overflow:ellipsis;
+        display:-webkit-box; 
+        -webkit-box-orient:vertical;
+        -webkit-line-clamp:2;
+    }
+
+    .loadMore{
+        position:absolute;
+        right:-15px;
+        top:0;
+        width:15px;
+        height:8px;
+        cursor:pointer;
+    }
+
+
+
     .suMain{
         width:1200px;
         margin:0 auto;
@@ -157,7 +387,7 @@ export default {
 
     .search_item{
         display:flex;
-        padding:12px 0;
+        padding:12px 20px 12px 0;
     }
 
     .bottom_line{
@@ -169,13 +399,13 @@ export default {
     .search_left{
         font-size:20px;
         font-weight:bold;
-        margin-right:15px;
         flex-shrink:0;
     }
 
     .search_right{
         display:flex;
         flex-wrap: wrap;
+        
     }
 
     .search_right_word{

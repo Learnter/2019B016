@@ -34,11 +34,11 @@
                 </ul>
             </div>
 
-            <div class="company-stores">
+            <!-- <div class="company-stores">
                <div class="stores-btn">发布找店信息</div>
                <div class="stores-btn">发布转铺信息</div>
                <div class="stores-btn">联系人工客服</div>
-           </div>
+           </div> -->
         </div>
         <footer-box></footer-box>
     </section>

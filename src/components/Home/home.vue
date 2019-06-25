@@ -6,17 +6,17 @@
         <!-- 中间主内容 -->
         <div class="main">
             <div class="logBox">
-                <div class="logItem text_size_17" @click="toggleBtn('/encyclopedia')">
+                <div class="logItem text_size_17">
                     <img class="logImg" src="../../assets/zpzpwz_4.png"/>
                     <p>开店百科</p>
-                </div>
-                <div class="logItem text_size_17"  @click="toggleBtn('/aboutUs')">
-                    <img class="logImg" src="../../assets/zpzpwz_5.png"/>
-                    <p>关于我们</p>
                 </div>
                 <div class="logItem text_size_17"  @click="toggleBtn('/success')">
                     <img class="logImg" src="../../assets/zpzpwz_6.png"/>
                     <p>成功案例</p>
+                </div>
+                <div class="logItem text_size_17"  @click="toggleBtn('/aboutUs')">
+                    <img class="logImg" src="../../assets/zpzpwz_5.png"/>
+                    <p>关于我们</p>
                 </div>
             </div>
             <div class="caseList">
@@ -89,29 +89,29 @@
                     精选店铺
                 </div>
                 <div class="storeList">
-                    <div class="storeItem" v-for="(item,index) in 3" :key="index">
+                    <div class="storeItem" v-for="(item,index) in choicenessData" :key="index"  @click=toDetail(item)>
                         <div class="hot-Push">
                             热推
                         </div>
                         <div class="store-left">
-                            <img src="../../assets/zpzpwz_16.png" alt="加载失败" style="width：100%;height:100%">
+                            <img src="item.img_info.img_url">
                         </div>
                         <div class="store-right">
                             <div class="store-right-li">
-                                <span class="text_size_17">转租大朗长富步行街的店铺</span>
-                                <span>24小时内</span>
+                                <span class="text_size_17">{{item.title}}</span>
+                                <!-- <span>24小时内</span> -->
                             </div>
                             <div  class="store-right-li">
-                                <p>行业 : 奶茶  电话 : <span class="word_blue">132156878945</span></p>
-                                <span>45平方米</span>
+                                <p>行业&nbsp;:&nbsp;{{item.cate_name}}&nbsp;&nbsp;&nbsp;&nbsp;电话&nbsp;:&nbsp;<span class="word_blue">{{item.mobile}}</span></p>
+                                <span v-if="item.shop_area">{{item.shop_area}}平方米</span>
                             </div>
                             <div  class="store-right-li">
-                                <span>地址 : 大朗长富步行街108号</span>
-                                <span>转让租金 : 面议</span>
+                                <span>地址&nbsp;:&nbsp;{{item.twon}}</span>
+                                <span>转让租金&nbsp;:&nbsp;{{item.unit_transfer_price}}</span>
                             </div>
                             <div  class="store-right-li">
-                                <span>上水 下水</span>
-                                <span>被查看548次</span>
+                                <span>{{item.city}}-{{item.district}}</span>
+                                <span>被查看{{item.browse_num}}次</span>
                             </div>
                         </div>
                     </div>
@@ -139,6 +139,7 @@
          this.fetchChoiceness();
      },
      methods:{
+         //切换页面
          toggleBtn(path){
             sessionStorage.setItem("activePath",path);
             this.$router.push(path);
@@ -154,9 +155,13 @@
          fetchChoiceness(){
              let url = "index/featuredShopList";
              this.$https.get(url).then( res => {
-                //  this.choicenessData = res.data.data;
-                 console.log(res);
+                 this.choicenessData = res.data.data;
              })
+         },
+         //精选店铺跳转详情页面
+         toDetail(item){
+           let stopId = item.img_info.shop_id; //获取店铺id
+           this.$router.push({path:"/details",query:{id:stopId}}) //跳转详情
          }
      },
  components:{
@@ -354,12 +359,11 @@
         display:flex;
         border:2px solid rgba(239,239,239,1);
         padding:5px 15px 10px 2px;
-        margin-bottom:20px;
-        cursor: pointer;
-        transition: all .3s linear;
+        margin-bottom:10px;
     }
 
     .storeItem:hover{
+        cursor: pointer;
         background:linear-gradient(to left bottom,lightcyan,white,lightblue);
         transform: scaleY(1.1);
         border-radius:10px;

@@ -21,11 +21,11 @@
                    <div >
                         <!-- <img :src="item.img_url" class="store_picture_small" v-for="(item,index) in storeDetail.imgs_info" :key="index"  "/> -->
                         <swiper class="store_photos_item" :options="swiperOption" ref="mySwiper">
-                        <!-- slides -->
-                        <swiper-slide v-for="(item,index) in storeDetail.imgs_info" :key="index">
-                            <img class="store_picture_small" :src="item.img_url" @mouseover="toggleImg(item.img_url)"/>
-                        </swiper-slide>
-                        <!-- Optional controls -->
+                            <!-- slides -->
+                            <swiper-slide v-for="(item,index) in storeDetail.imgs_info" :key="index">
+                                <img class="store_picture_small" :src="item.img_url" @mouseover="toggleImg(item.img_url)"/>
+                            </swiper-slide>
+                            <!-- Optional controls -->
                         </swiper>
                    </div>
                    
@@ -197,7 +197,7 @@
                         <div class="store-right">
                             <div class="store-right-li">
                                 <span class="text_size_17">{{item.title}}</span>
-                                <span>24小时内</span>
+                                <!-- <span>24小时内</span> -->
                             </div>
                             <div  class="store-right-li">
                                 <p>行业&nbsp;:&nbsp;{{item.cate_name}}&nbsp;&nbsp;&nbsp;&nbsp;电话&nbsp;:&nbsp;<span class="word_blue">{{item.mobile}}</span></p>
@@ -240,9 +240,9 @@ export default {
         }
     },
     created(){
-        this.storeId = this.$route.query.id;
-        this.fetchData();
-        this.fetchMoreCase();
+        this.storeId = this.$route.query.id; //获取传入的商店id;
+        this.fetchData(); //调用店铺详情接口
+        this.fetchMoreCase(); //调用更多推荐接口
     },
     methods:{
       fetchData(){ //获取店铺详情的数据
@@ -533,7 +533,7 @@ components:{
         line-height:52px;
         text-align:center;
         margin: 45px 0;
-        font-size:23px;
+        font-size:20px;
         font-weight:bold;
         background:url("../../assets/zpzpwz_7.png");
         background-size:100%;

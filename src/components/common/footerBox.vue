@@ -4,18 +4,18 @@
            <div class="footer-left">
                 <div class="footer-left-top">
                     <div class="footer-left-logo">
-                        <img src="../../assets/zpzpwz_3.png" alt="">
+                        <img src="../../assets/zpzpwz_3.png">
                     </div>
                    <div class="footer-tips">
                        <p>
-                           首页 | 商铺转让 | 我要找店 | 找店地址 | APP下载 | 关于我们 | 开店百科 | 站内新闻
+                           首页&nbsp;|&nbsp;商铺转让&nbsp;|&nbsp;我要找店&nbsp;|&nbsp;找店地址&nbsp;|&nbsp;APP下载&nbsp;|&nbsp;关于我们&nbsp;|&nbsp;开店百科&nbsp;|&nbsp;站内新闻
                        </p>
                        <p>
-                           联系电话 : <span class="word_blue">{{storeInfo.contact_number}}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公司地址&nbsp;:&nbsp;{{storeInfo.company_address}}
+                           联系电话&nbsp;:&nbsp;<span class="word_blue">{{storeInfo.contact_number}}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公司地址&nbsp;:&nbsp;{{storeInfo.company_address}}
                        </p>
                    </div>             
              </div>
-             <p>{{storeInfo.copyright}}&nbsp;&nbsp;&nbsp;备案号&nbsp;:&nbsp;{{storeInfo.case_number}}站长统计</p>
+             <p v-if="storeInfo.copyright">{{storeInfo.copyright}}&nbsp;&nbsp;&nbsp;备案号&nbsp;:&nbsp;{{storeInfo.case_number}}站长统计</p>
            </div>
            <div class="footer-right">
                <img :src="storeInfo.qr_code">
@@ -36,15 +36,25 @@ export default {
     },
     methods:{
         fetchData(){
+
             let url = "config/getInfo";
+
             this.$https.get("config/getInfo").then( res =>{
 
-            this.storeInfo = res.data.data.webInfo; //获取公司信息
+                if(res && res.data.data){
 
-            let phone =  res.data.data.webInfo.web_tel_phone; //获取公司座机号码
+                    this.storeInfo = res.data.data.webInfo; //获取公司信息
 
-            //将号码设置到缓存里面
-            phone ? sessionStorage.setItem("company_phone",phone) : sessionStorage.setItem("company_phone","000-0000-000");
+                    let phone =  res.data.data.webInfo.web_tel_phone; //获取公司座机号码
+
+                    let banner = res.data.data.adInfo.web_home; //轮播数据;
+            
+                    //将轮播数据存储在缓存中,因Storage存储只能存字符串所以需要使用JSON.stringify解析为字符串;
+                    sessionStorage.setItem("bannerInfo",JSON.stringify(banner));
+
+                    //将号码设置到缓存里面
+                    phone ? sessionStorage.setItem("company_phone",phone):sessionStorage.setItem("company_phone","000-0000-000");
+            }
          });
         }
     }

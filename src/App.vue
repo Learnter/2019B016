@@ -111,7 +111,7 @@ img{
   color:#343434;
 }
 
-.company-stores{
+/* .company-stores{
     margin:30px 0;
     display:flex;
     justify-content:space-between;
@@ -125,5 +125,5 @@ img{
     font-size:28px;
     font-weight:400;
     text-align:center;
-}
+} */
 </style>
