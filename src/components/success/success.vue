@@ -1,6 +1,6 @@
 <template>
     <section class="aboutUs">
-        <header-box></header-box>
+        <!-- <header-box></header-box> -->
         <div class="suMain">
             <p class="position-tips text_size_17">当前位置&nbsp;:&nbsp;首页&nbsp;>&nbsp;成功案例</p>
 
@@ -8,7 +8,7 @@
                  <ul>
                      <li class="search_item">
                          <div class="search_left">区&nbsp;&nbsp;&nbsp;&nbsp;域&nbsp;:&nbsp;</div>
-                         <div class="flex_col" style="position:relative">
+                         <div style="position:relative;flex:1">
                              <div :class="!isHidden == true?'isHidden':''" >
                                  <span class="search_right_word"  :class="regionActive == regionIndex ? 'word_red' : ''"  v-for="(regionItem,regionIndex) in region" :key="regionIndex" @click.stop="searchRegion(regionItem,regionIndex)">{{regionItem.name}}</span>
                              </div>
@@ -16,8 +16,8 @@
                               <div class="search_right" style="margin-top:5px" v-if="regionChild.length !== 0">
                                   <span class="search_right_word search_rigtht_child"  :class="recondRegActive == childIndex ? 'word_red' : ''"  v-for="(childItem,childIndex) in regionChild" :key="'child-'+childIndex" @click.stop="searchRecondRegion(childItem,childIndex)" >{{childItem.name}}</span>
                               </div>
-                              <div class="loadMore"  @click="loadMore">
-                                   <img :src="loadMoreIcon" alt="">
+                              <div class="loadMore"  @click.stop="loadMore">
+                                   <img :src="loadMoreIcon" alt="加载更多">
                               </div>
                          </div>
                      </li>
@@ -26,7 +26,7 @@
                          <div class="search_left">业&nbsp;&nbsp;&nbsp;&nbsp;态&nbsp;:&nbsp;</div>
                          <div class="flex_col">
                             <div class="search_right">
-                                <span class="search_right_word" :class="industryActive == industryIndex ? 'word_red' : ''" v-for="(item,industryIndex) in industryCate" :key="industryIndex" @click="showChild(item,industryIndex)">
+                                <span class="search_right_word" :class="industryActive == industryIndex ? 'word_red' : ''" v-for="(item,industryIndex) in industryCate" :key="industryIndex" @click="searchIndustry(item,industryIndex)">
                                     {{item.name}}
                                 </span>
                             </div>
@@ -75,7 +75,7 @@
                                 <p v-if="item.unit_month_price">&yen;&nbsp;<span class="text_size_17 word_red">{{item.unit_month_price}}</span></p>
                             </div>
                             <div  class="store-right-li">
-                                <p v-if="item.mobile">临街店铺  &nbsp;&nbsp;&nbsp;&nbsp; 电话:&nbsp;<span class="word_blue">{{item.mobile}}</span></p>
+                                <p v-if="item.mobile">临街店铺 &nbsp;&nbsp;&nbsp;&nbsp; 电话:&nbsp;<span class="word_blue">{{item.mobile}}</span></p>
                                  <p v-if="item.unit_transfer_price">转让费&nbsp;:&nbsp;<span class="word_red">{{item.unit_transfer_price}}</span></p>
                             </div>
                             <div  class="store-right-li">
@@ -97,12 +97,12 @@
                <div class="stores-btn">联系人工客服</div>
            </div> -->
         </div> 
-        <footer-box></footer-box>
+        <!-- <footer-box></footer-box> -->
     </section>
 </template>
 <script>
-import headerBox from "@/components/common/headerBox";
-import footerBox from "@/components/common/footerBox";
+// import headerBox from "@/components/common/headerBox";
+// import footerBox from "@/components/common/footerBox";
 export default {
     name:"aboutUs",
     data(){
@@ -147,7 +147,7 @@ export default {
         region(){
 
             let region = this.regionData;
-
+            console.log(region);
             let all = [{"id":0,name:"全部",child:[]}];
 
             for(let obj in region){
@@ -225,22 +225,27 @@ export default {
        //获取成功案例的数据
        fetchSuccessData(){
            let url = "index/successCaseList";
-           this.$https.get(url).then( res => {
+           let data = this.searchData;
+           this.$https.get(url,data).then( res => {
                this.successCaseList = res.data.data;
            })
        },
        //地区一级搜索
        searchRegion(item,index){
-           this.regionActive  =  index;
-           this.regionChild = item.child;
-           this.searchData.city = item.id;
 
-            let url = "index/successCaseList";
+           this.recondRegActive = 0; //将二级索引清0
 
-           this.$https.get(url,this.searchData).then( res => {
+           this.regionActive  =  index; //确认按钮索引
 
-               this.successCaseList = res.data.data;
-         })
+           this.regionChild = item.child; //赋值二级数据
+
+           this.searchData.city = item.id; //添加搜索条件
+
+           if(item.id == 0){ //点击全部时  需要将二级的数据及索引清除
+               this.searchData.district = 0;
+           }
+
+           this.fetchSuccessData(); //调用成功案例接口
        },
        //地区二级搜索
        searchRecondRegion(item,index){
@@ -249,90 +254,64 @@ export default {
 
            this.searchData.district = item.id;
 
-           console.log(this.recondRegActive);
+           this.fetchSuccessData(); 
 
-            let url = "index/successCaseList";
-
-           this.$https.get(url,this.searchData).then( res => {
-
-               this.successCaseList = res.data.data;
-         })
        },
        //行业一级搜索
-       showChild(item,index){
+       searchIndustry(item,index){
 
-          this.industryActive = index;
+          this.recondInActive = 0;
 
-          this.categoryChild = item.child;
+          this.industryActive = index; 
 
-          this.searchData.cate_id = item.id;
+          this.categoryChild = item.child; 
 
-          let url = "index/successCaseList";
+          this.searchData.cate_id = item.id; 
 
-           this.$https.get(url,this.searchData).then( res => {
+          this.fetchSuccessData(); 
 
-               this.successCaseList = res.data.data;
-         })
        },
        //行业二级搜索
        searchRecondIndustry(item,index){
 
-           this.recondInActive = index;
-           this.searchData.cate_id = item.id;
+           this.recondInActive = index; 
 
-           let url = "index/successCaseList";
+           this.searchData.cate_id = item.id; 
 
-           this.$https.get(url,this.searchData).then( res => {
-
-               this.successCaseList = res.data.data;
-         })
+           this.fetchSuccessData(); 
        },
        //面积搜索
        searchArea(item,index){
 
-           this.areaActive = index;
+           this.areaActive = index; 
 
            this.searchData.area_min = item.min;
 
            this.searchData.area_max = item.max;
 
-           let url = "index/successCaseList";
-
-           this.$https.get(url,this.searchData).then( res => {
-               
-               this.successCaseList = res.data.data;
-         })
+           this.fetchSuccessData(); 
            
        },
         //租金搜索
        searchMoney(item,index){
 
-           this.moneyActive = index;
+           this.moneyActive = index; 
 
            this.searchData.rent_min = item.min;
 
            this.searchData.rent_max = item.max;
 
-           let url = "index/successCaseList";
-
-           this.$https.get(url,this.searchData).then( res => {
-               this.successCaseList = res.data.data;
-         })
+           this.fetchSuccessData(); 
            
        },
         //类型搜索
        searchType(item,index){
 
-           this.typeActive = index;
+           this.typeActive = index; 
 
            this.searchData.shop_type = item.value;
 
-           let url = "index/successCaseList";
-
-           this.$https.get(url,this.searchData).then( res => {
-
-               this.successCaseList = res.data.data;
-         })
+           this.fetchSuccessData(); 
            
        },
        //点击切换到详情页面
@@ -340,7 +319,7 @@ export default {
         let stopId = item.img_info.shop_id;
         this.$router.push({path:"/details",query:{id:stopId}});
        },
-       //加载二级数据
+       //收缩或加载二级数据
        loadMore(){
            this.isHidden = !this.isHidden;
            if(this.isHidden){
@@ -352,8 +331,8 @@ export default {
 
     },
  components:{
-    headerBox,
-    footerBox
+    // headerBox,
+    // footerBox
   }
 }
 </script>
@@ -361,10 +340,13 @@ export default {
 
 
     .isHidden{
+        width:100%;
         overflow:hidden; 
         text-overflow:ellipsis;
         display:-webkit-box; 
-        -webkit-box-orient:vertical;
+        /* ! autoprefixer: off   */
+        -webkit-box-orient: vertical; 
+        /* autoprefixer: on */ 
         -webkit-line-clamp:2;
     }
 
@@ -399,7 +381,6 @@ export default {
     .search_left{
         font-size:20px;
         font-weight:bold;
-        flex-shrink:0;
     }
 
     .search_right{

@@ -47,8 +47,7 @@ export default {
         return{
             company_phone:" ",
             active:"/home", //切换导航的路径
-            navInfo:[{id:0,name:"首页",path:"/home"},
-                    {id:1,name:"成功案例",path:"/success"},{id:2,name:"关于我们",path:"/aboutUs"}],
+            navInfo:[{id:0,name:"首页",path:"/home"},{id:1,name:"成功案例",path:"/success"},{id:2,name:"关于我们",path:"/aboutUs"}],
             swiperOption:{ //轮播的参数
                     pagination:{
                         el:".swiper-pagination"
@@ -79,7 +78,6 @@ export default {
        
     },
     mounted(){
-        //每次页面显示获取激活的导航栏
         this.refresh();
     },
     methods:{
@@ -119,6 +117,12 @@ export default {
     components:{
          swiper,
          swiperSlide,
+     },
+     watch:{
+         $route(){
+             //路由发生变化重新获取激活的路径
+             this.active = sessionStorage.getItem("activePath");
+         }
      }
 }
 </script>

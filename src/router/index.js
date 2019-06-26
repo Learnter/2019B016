@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from "@/components/Home/home";
-import AboutUs from "@/components/aboutUs/aboutUs";
-import Encyclopedia from "@/components/store/encyclopedia";
-import Success from "@/components/success/success";
-import Details from "@/components/details/details";
+// import Home from "@/components/Home/home";
+// import AboutUs from "@/components/aboutUs/aboutUs";
+// import Encyclopedia from "@/components/store/encyclopedia";
+// import Success from "@/components/success/success";
+// import Details from "@/components/details/details";
 
 Vue.use(Router)
 

@@ -1,6 +1,6 @@
 <template>
     <section class="aboutUs">
-        <header-box></header-box>
+        <!-- <header-box></header-box> -->
         <div class="usMain">
            <p class="position-tips text_size_17">当前位置 : 首页 > 关于我们</p>
            <div class="company-vision">
@@ -63,12 +63,12 @@
                <div class="stores-btn">联系人工客服</div>
            </div> -->
         </div>
-      <footer-box></footer-box>
+      <!-- <footer-box></footer-box> -->
     </section>
 </template>
 <script>
-import headerBox from "@/components/common/headerBox";
-import footerBox from "@/components/common/footerBox";
+// import headerBox from "@/components/common/headerBox";
+// import footerBox from "@/components/common/footerBox";
 export default {
     name:"aboutUs",
     data(){
@@ -77,8 +77,8 @@ export default {
         }
     },
 components:{
-    headerBox,
-    footerBox
+    // headerBox,
+    // footerBox
   }
 }
 </script>

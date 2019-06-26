@@ -1,7 +1,7 @@
 <template>
     <section class="storeDetails">
 
-        <header-box></header-box>
+        <!-- <header-box></header-box> -->
 
         <div class="deMain">
 
@@ -9,23 +9,31 @@
 
            <div class="storeInfo flex_row">
                <div class="store_picture flex_col">
-                   <div class="store_picture_big" v-if="storeDetail.video_url">
+                   <div class="store_picture_big"  v-if="bigImg.show_type == 'video'"> 
+
                         <video width="612" height="382" controls>
-                            <source src="storeDetail.video_url"  type="video/mp4">
+                            <source :src="bigImg.img_url"  type="video/mp4">
                             您的浏览器不支持 HTML5 video 标签。
                         </video>
                    </div>
                    <div class="store_picture_big" v-else>
-                      <img :src="bigImgUrl" alt="加载失败">
+                      <img :src="bigImg.img_url" alt="加载失败">
                    </div>
                    <div >
-                        <!-- <img :src="item.img_url" class="store_picture_small" v-for="(item,index) in storeDetail.imgs_info" :key="index"  "/> -->
                         <swiper class="store_photos_item" :options="swiperOption" ref="mySwiper">
                             <!-- slides -->
                             <swiper-slide v-for="(item,index) in storeDetail.imgs_info" :key="index">
-                                <img class="store_picture_small" :src="item.img_url" @mouseover="toggleImg(item.img_url)"/>
+
+                                <!-- 根据show_type判断是否为视频 -->
+                                <video class="store_picture_small" v-if="item.show_type == 'video'"  width="100%" height="100%" @click.stop="toggleImg(item)">
+                                        <source :src="item.img_url"  type="video/mp4">
+                                        您的浏览器不支持 HTML5 video 标签。
+                                </video>
+
+                                <!-- 根据show_type判断是否为图片 -->
+                                <img class="store_picture_small" v-else :src="item.img_url"   @click.stop="toggleImg(item)"/>
+
                             </swiper-slide>
-                            <!-- Optional controls -->
                         </swiper>
                    </div>
                    
@@ -192,7 +200,7 @@
                             热推
                         </div>
                         <div class="store-left">
-                            <img src="item.img_info.img_url">
+                            <img :src="item.img_info.img_url">
                         </div>
                         <div class="store-right">
                             <div class="store-right-li">
@@ -216,12 +224,12 @@
                 </div>
             </div>
         </div>
-     <footer-box></footer-box>
+     <!-- <footer-box></footer-box> -->
     </section>
 </template>
 <script>
-import headerBox from "@/components/common/headerBox";
-import footerBox from "@/components/common/footerBox";
+// import headerBox from "@/components/common/headerBox";
+// import footerBox from "@/components/common/footerBox";
 import "swiper/dist/css/swiper.css";
 import {swiper,swiperSlide} from "vue-awesome-swiper";
 export default {
@@ -229,7 +237,7 @@ export default {
     data(){
         return{
             storeId:"", //店铺Id
-            bigImgUrl:"", // 大图url
+            bigImg:{}, // 大图url
             storeDetail:{},//店铺详情信息
             moreCase:[],//更多推荐信息
             swiperOption:{ //轮播的参数
@@ -251,10 +259,11 @@ export default {
               id:this.storeId
           };
           this.$https.get(url,data).then( res => {
+
              this.storeDetail = res.data.data;
-            //  console.log(res.data.data);
+
              if(res.data.data.imgs_info){
-                 this.bigImgUrl = res.data.data.imgs_info[0].img_url;
+                 this.bigImg = res.data.data.imgs_info[0];
              }
           })
       },
@@ -268,13 +277,13 @@ export default {
         let stopId = item.img_info.shop_id;
         this.$router.push({path:"/details",query:{id:stopId}});
        },
-      toggleImg(url){ //点击切换大图
-         this.bigImgUrl = url;
+      toggleImg(item){ //点击切换大图
+         this.bigImg = item;
       }
     },
 components:{
-    headerBox,
-    footerBox,
+    // headerBox,
+    // footerBox,
     swiper,
     swiperSlide,
   },

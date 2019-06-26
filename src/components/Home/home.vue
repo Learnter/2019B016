@@ -1,7 +1,7 @@
 <template>
     <div id="homePage">
 
-        <header-box></header-box>
+        <!-- <header-box></header-box> -->
 
         <!-- 中间主内容 -->
         <div class="main">
@@ -29,11 +29,11 @@
                             <img class="connect-img-size" :src="item.avatar" alt="加载失败">
                           </div>
                           <div class="connect-service-info">
-                              <div class="store-right-li text_size_14">
+                              <div class="store-right-li text_size_12">
                                   <span>客服</span>
                                   <span>已有{{item.service_num}}人咨询</span>
                               </div>
-                              <div class="store-right-li margin-top text_size_17">
+                              <div class="store-right-li margin-top text_size_18">
                                   <span>{{item.username}}</span>
                                   <span style="color:#2A9DFF">{{item.mobile}}</span>
                               </div>
@@ -56,7 +56,7 @@
                 <div class="case-process">
                     <div class="case-process-li" >
                         <div class="case-process-img">
-                            <img src="../../assets/zpzpwz_12.png" alt="加载失败">
+                            <img class="case_img" src="../../assets/zpzpwz_12.png" alt="加载失败">
                         </div>
                         <h3>联系预约</h3>
                         <p class="text_size_14">预约店铺信息实地考察</p>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="case-process-li">
                        <div class="case-process-img">
-                            <img src="../../assets/zpzpwz_15.png" alt="加载失败">
+                            <img  src="../../assets/zpzpwz_15.png" alt="加载失败">
                         </div>
                         <h3>人工售后服务</h3>
                         <p class="text_size_14">服务到转铺成功为止</p>
@@ -94,7 +94,7 @@
                             热推
                         </div>
                         <div class="store-left">
-                            <img src="item.img_info.img_url">
+                            <img :src="item.img_info.img_url">
                         </div>
                         <div class="store-right">
                             <div class="store-right-li">
@@ -120,13 +120,13 @@
         </div>
 
         <!-- 底部栏 -->
-        <footer-box></footer-box> 
+        <!-- <footer-box></footer-box>  -->
         
     </div>
 </template>
 <script>  
-    import headerBox from "@/components/common/headerBox";
-    import footerBox from "@/components/common/footerBox";
+    // import headerBox from "@/components/common/headerBox";
+    // import footerBox from "@/components/common/footerBox";
  export default {
      data(){
         return{
@@ -165,8 +165,8 @@
          }
      },
  components:{
-    headerBox,
-    footerBox
+    // headerBox,
+    // footerBox
   }
  }
 </script>
@@ -267,11 +267,16 @@
 
     }
     .connect-item-img{
-        width:143px;
-        height:143px;
+        width:128px;
+        height:128px;
         background:#999999;
         overflow: hidden;
         border-radius:50%;
+        transition:transform 0.5s linear;
+    }
+
+    .connect-item-img:hover{
+        transform:rotate(360deg) scale(1.1);
     }
 
     .connect-service-info{
@@ -320,6 +325,12 @@
         width:80px;
         height:80px;
         margin:0 auto;
+        transition:transform .3s linear;
+    }
+
+    .case-process-img:hover{
+        cursor: pointer;
+        transform: scale(1.1) rotate(360deg);
     }
 
     h3{
@@ -328,8 +339,6 @@
         font-weight:bold;
     }
 
-
-   
 .caseList{
         display:flex;
         flex-direction:column;

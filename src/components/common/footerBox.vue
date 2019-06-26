@@ -15,9 +15,9 @@
                        </p>
                    </div>             
              </div>
-             <p v-if="storeInfo.copyright">{{storeInfo.copyright}}&nbsp;&nbsp;&nbsp;备案号&nbsp;:&nbsp;{{storeInfo.case_number}}站长统计</p>
+             <p v-if="storeInfo.copyright">{{storeInfo.copyright}}&nbsp;&nbsp;&nbsp;备案号&nbsp;:&nbsp;{{storeInfo.case_number}}</p>
            </div>
-           <div class="footer-right">
+           <div class="footer-right" v-show="storeInfo.qr_code">
                <img :src="storeInfo.qr_code">
            </div>
         </div>
