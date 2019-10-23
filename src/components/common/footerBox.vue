@@ -4,7 +4,7 @@
            <div class="footer-left">
                 <div class="footer-left-top">
                     <div class="footer-left-logo">
-                        <img src="../../assets/zpzpwz_3.png">
+                        <img src="../../assets/logo1_1.png">
                     </div>
                    <div class="footer-tips">
                        <p>

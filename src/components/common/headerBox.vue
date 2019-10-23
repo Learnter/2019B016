@@ -13,7 +13,7 @@
        <div class="navBar">
             <div class="navContent">
                 <div class="navContent-left" @click="logoBtn">
-                        <img src="../../assets/zpzpwz_3.png" alt="加载失败">
+                        <img src="../../assets/logo1_1.png">
                 </div>
                 <div>
                     <ul class=" navContent-right flex_row">
